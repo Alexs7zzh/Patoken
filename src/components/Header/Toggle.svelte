@@ -29,7 +29,7 @@
 		padding: 0;
 		font-size: 1em;
 		-webkit-tap-highlight-color: transparent;
-		@media screen and (min-width: 680px) {
+		@media screen and (min-width: 1024px) {
 			right: var(--spacing-half);
 		}
 	}

@@ -3,7 +3,7 @@
 main {
 	padding: 0 var(--spacing-half);
 	margin-top: var(--spacing);
-	@media screen and (min-width: #{variables.$breakpoint-s}px) {
+	@media screen and (min-width: #{variables.$breakpoint-m}px) {
 		margin-top: 0;
 		padding: var(--spacing-3) var(--spacing-2) var(--spacing-3) var(--spacing);
 	}

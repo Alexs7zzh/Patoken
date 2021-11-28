@@ -25,7 +25,7 @@
 		margin: var(--spacing) var(--spacing-half);
 		padding: 0;
 		border-bottom: 1px solid var(--color-hr);
-		@media screen and (min-width: 680px) {
+		@media screen and (min-width: 1024px) {
 			margin: 0;
 			padding: var(--spacing);
 			padding-right: 0;

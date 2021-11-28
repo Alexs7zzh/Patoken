@@ -4,7 +4,8 @@
 	padding-bottom: var(--spacing-2);
 	@media screen and (min-width: #{variables.$breakpoint-s}px) {
 		display: grid;
-		grid-template: 'header main' 1fr / 1fr 2fr;
+		grid-template: 'header comment' auto
+									 'main comment' auto / 3fr 2fr;
 	}
 
 	@media screen and (min-width: #{variables.$breakpoint-m}px) {
@@ -14,15 +15,14 @@
 
 #header {
 	contain: content;
-	@media screen and (min-width: #{variables.$breakpoint-s}px) {
+	grid-area: header;
+	@media screen and (min-width: #{variables.$breakpoint-m}px) {
+		grid-area: none;
 		position: fixed;
 		top: 0;
-		height: 100%;
-		width: 33%;
-		contain: strict;
-	}
-	@media screen and (min-width: #{variables.$breakpoint-m}px) {
 		width: 20vw;
+		height: 100%;
+		contain: strict;
 	}
 }
 
@@ -32,15 +32,18 @@ main {
 }
 
 #comment {
-	@media screen and (max-width: #{variables.$breakpoint-m}px) {
+	@media screen and (max-width: #{variables.$breakpoint-s}px) {
 		display: none;
 	}
-	@media screen and (min-width: #{variables.$breakpoint-m}px) {
+	@media screen and (min-width: #{variables.$breakpoint-s}px) {
 		contain: strict;
 		position: fixed;
 		top: 0;
 		right: 0;
 		height: 100%;
+		width: 40%;
+	}
+	@media screen and (min-width: #{variables.$breakpoint-m}px) {
 		width: 30%;
 	}
 }

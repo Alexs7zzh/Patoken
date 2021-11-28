@@ -20,7 +20,7 @@
 		list-style: none;
 		padding: 0;
 
-		@media screen and (min-width: 680px) {
+		@media screen and (min-width: 1024px) {
 			margin-top: var(--spacing-2);
 			margin-bottom: var(--spacing-2);
 		}
@@ -28,7 +28,7 @@
 		li {
 			line-height: 1;
 			margin-bottom: var(--spacing);
-			@media screen and (max-width: 680px) {
+			@media screen and (max-width: 1024px) {
 				display: inline-block;
 				margin-bottom: 1.4em;
 				margin-right: var(--spacing-half);
