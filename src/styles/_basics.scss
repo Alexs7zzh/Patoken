@@ -1,0 +1,103 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+html {
+	position: relative;
+}
+
+img,
+picture {
+	max-width: 100%;
+	display: block;
+	height: auto;
+	cursor: pointer;
+}
+
+:target {
+	@supports (scroll-margin-top: 2em) {
+		scroll-margin-top: 2em;
+	}
+	@supports not (scroll-margin-top: 2em) {
+		scroll-snap-margin-top: 2em;
+	}
+}
+
+html {
+	margin: 0;
+	padding: 0;
+	text-size-adjust: 100%;
+	font-size: 18px;
+}
+
+body {
+	color: var(--color-text);
+	background-color: var(--color-bg);
+	font-family: var(--font-sans);
+	transition: all 0.2s ease-out;
+}
+
+::selection {
+	background-color: var(--color-melon);
+}
+
+p,
+li {
+	line-height: var(--line-height);
+	font-size: var(--font);
+}
+
+p + p {
+	margin-top: var(--spacing-half);
+}
+
+.button {
+	border-radius: 0.4em;
+	padding: 0.4em 0.6em;
+	user-select: none;
+	color: #1c1c1e;
+	-webkit-tap-highlight-color: transparent;
+}
+
+a {
+	color: var(--color-text);
+}
+
+svg.annotation,
+svg.edit-annotation {
+	color: var(--color-melon-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-user-color-scheme]) svg.annotation,
+	svg.edit-annotation {
+		color: var(--color-melon);
+	}
+}
+
+:root[data-user-color-scheme='dark'] svg.annotation,
+svg.edit-annotation {
+	color: var(--color-melon);
+}
+
+.highlight {
+	cursor: pointer;
+}

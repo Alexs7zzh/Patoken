@@ -1,0 +1,13 @@
+{
+	"name": "api",
+	"scripts": {
+		"vercel-build": "prisma generate"
+	},
+	"dependencies": {
+		"@hapi/iron": "^6.0.0",
+		"@magic-sdk/admin": "^1.3.2",
+		"@prisma/client": "^3.5.0",
+		"cookie": "^0.4.1",
+		"prisma": "^3.5.0"
+	}
+}

@@ -1,0 +1,46 @@
+@use 'variables';
+
+#svelte {
+	padding-bottom: var(--spacing-2);
+	@media screen and (min-width: #{variables.$breakpoint-s}px) {
+		display: grid;
+		grid-template: 'header main' 1fr / 1fr 2fr;
+	}
+
+	@media screen and (min-width: #{variables.$breakpoint-m}px) {
+		grid-template: 'header main comment' 1fr / 20% 50% 30%;
+	}
+}
+
+#header {
+	contain: content;
+	@media screen and (min-width: #{variables.$breakpoint-s}px) {
+		position: fixed;
+		top: 0;
+		height: 100%;
+		width: 33%;
+		contain: strict;
+	}
+	@media screen and (min-width: #{variables.$breakpoint-m}px) {
+		width: 20vw;
+	}
+}
+
+main {
+	contain: layout;
+	grid-area: main;
+}
+
+#comment {
+	@media screen and (max-width: #{variables.$breakpoint-m}px) {
+		display: none;
+	}
+	@media screen and (min-width: #{variables.$breakpoint-m}px) {
+		contain: strict;
+		position: fixed;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 30%;
+	}
+}
