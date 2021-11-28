@@ -121,6 +121,7 @@
 		outline: none;
 		font-family: inherit;
 		margin-top: var(--spacing-half);
+		line-height: 1.6;
 	}
 
 	div {
