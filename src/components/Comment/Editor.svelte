@@ -88,10 +88,13 @@
 		</blockquote>
 		<textarea bind:value={text} id="edit-textarea" />
 		<div>
-			<select bind:value={selected}>
-				<option value="0">考察</option>
-				<option value="1">パトアンサー</option>
-			</select>
+			<label for='editor-select'>
+				<select id='editor-select' bind:value={selected}>
+					<option value="0">考察</option>
+					<option value="1">パトアンサー</option>
+				</select>
+				<svg viewBox="0 0 320 512"><path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path></svg>
+			</label>
 			<button type="submit">投稿</button>
 			<button type="button" on:click={resetComment}>キャンセル</button>
 		</div>
@@ -124,16 +127,33 @@
 		margin-top: 0.6em;
 	}
 
+	label {
+		border-bottom: 1px solid var(--color-melon);
+		position: relative;
+	}
+
 	select {
 		background-color: transparent;
 		border: none;
-		border-bottom: 1px solid var(--color-melon);
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		border-radius: 0;
 		outline: none;
-		padding: 0.3em 0.1em;
+		padding: 0.2em 0.1em;
 		font-family: inherit;
 		font-size: inherit;
-		cursor: inherit;
 		line-height: inherit;
+		cursor: pointer;
+	}
+
+	svg {
+		fill: var(--color-text);
+		width: 1em;
+		height: 1em;
+		position: absolute;
+		right: 0;
+		top: calc(50% - .5em);
 	}
 
 	button {
