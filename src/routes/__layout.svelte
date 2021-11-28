@@ -22,8 +22,10 @@
 
 	onMount(async () => {
 		applyDarkModeSettings()
-		const data = await (await fetch('/api/user')).json()
-		if (data && data.user) userStore.set(data.user)
+		try {
+			const data = await (await fetch('/api/user')).json()
+			if (data && data.user) userStore.set(data.user)
+		} catch {}
 	})
 
 	$: $userStore && import('$components/Tooltip/Tooltip.svelte')
