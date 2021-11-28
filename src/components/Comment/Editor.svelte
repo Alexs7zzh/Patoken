@@ -12,6 +12,8 @@
 
 	currentComment.subscribe(async comment => {
 		if (!comment) return
+		text = ''
+		removeEditHighlights()
 		if (comment.text.length === 0) highlightRange(anchor(comment) as Range, { animate: true, isEdit: true })
 		else text = comment.text
 		await tick()
