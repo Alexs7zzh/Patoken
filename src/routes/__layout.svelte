@@ -28,7 +28,7 @@
 					credentials: 'include'
 				})
 			).json()
-			if (data && data.user) userStore.set(data.user)
+			if (data) userStore.set(data)
 		} catch {
 			userStore.set(null)
 		}
