@@ -1,6 +1,7 @@
 import path from 'path'
 import preprocess from 'svelte-preprocess'
 import vercel from '@sveltejs/adapter-vercel'
+import autoprefixer from 'autoprefixer'
 
 const config = {
 	preprocess: preprocess({
@@ -21,6 +22,11 @@ const config = {
 			clearScreen: false,
 			optimizeDeps: {
 				exclude: ['sswr']
+			},
+			css: {
+				postcss: {
+					plugins: [autoprefixer()]
+				}
 			}
 		}
 	}
