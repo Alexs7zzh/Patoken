@@ -25,7 +25,9 @@
 		try {
 			const data = await (await fetch('/api/user')).json()
 			if (data && data.user) userStore.set(data.user)
-		} catch {}
+		} catch {
+			userStore.set(null)
+		}
 	})
 
 	$: $userStore &&

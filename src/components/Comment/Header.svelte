@@ -19,7 +19,7 @@
 	{#if loading && $loading}
 		<DoubleBounce size="1" unit="em" style="margin-left:var(--spacing-half);" />
 	{/if}
-	{#if $userStore}
+	{#if $userStore && $userStore.name}
 		<p>{$userStore.name}</p>
 	{:else}
 		<a href="/signin">登録</a>
