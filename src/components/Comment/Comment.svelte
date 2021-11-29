@@ -74,6 +74,7 @@
 		user-select: none;
 		p {
 			font-weight: bold;
+			cursor: default;
 		}
 	}
 

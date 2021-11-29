@@ -67,6 +67,7 @@
 	p {
 		font-weight: bold;
 		margin-left: auto;
+		cursor: default;
 	}
 
 	a {
@@ -74,6 +75,7 @@
 		font-weight: bold;
 		position: relative;
 		margin-left: auto;
+		cursor: default;
 
 		&::after {
 			content: '';
