@@ -34,11 +34,9 @@ export default async function handler(req, res) {
 	}
 
 	try {
-		// Parse and validate the DID token
 		const didToken = magic.utils.parseAuthorizationHeader(req.headers['authorization'])
 		magic.token.validate(didToken)
 
-		// Token is valid, so get the user metadata and set it in a cookie.
 		const metadata = await magic.users.getMetadataByToken(didToken)
 		const result = await prisma.user.findUnique({
 			where: {

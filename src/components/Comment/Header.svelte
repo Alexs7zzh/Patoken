@@ -54,7 +54,7 @@
 		align-items: center;
 		border-bottom: 3px solid transparent;
 		transition: border-color 0.5s ease-out;
-		
+
 		&:hover {
 			border-color: var(--color-blue);
 		}

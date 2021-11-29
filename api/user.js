@@ -43,14 +43,14 @@ export default async function handler(req, res) {
 
 			const user = await getSession(session)
 			const cookie = await createSessionCookie(user)
-			
+
 			if (!user.name && user.email) {
-				const data = await prisma.user.findUnique({
+				const { name } = await prisma.user.findUnique({
 					where: {
 						email: user.email
 					}
 				})
-				user.name = data.name
+				user.name = name
 			}
 
 			res.setHeader('Set-Cookie', cookie)

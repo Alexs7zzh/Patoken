@@ -28,8 +28,8 @@
 		} catch {}
 	})
 
-	$: $userStore && import('$components/Tooltip/Tooltip.svelte')
-		.then(({ default: module }) => {
+	$: $userStore &&
+		import('$components/Tooltip/Tooltip.svelte').then(({ default: module }) => {
 			Tooltip = module
 		})
 </script>

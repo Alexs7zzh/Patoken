@@ -90,12 +90,14 @@
 		</blockquote>
 		<textarea bind:value={text} id="edit-textarea" />
 		<div>
-			<label for='editor-select'>
-				<select id='editor-select' bind:value={selected}>
+			<label for="editor-select">
+				<select id="editor-select" bind:value={selected}>
 					<option value="0">考察</option>
 					<option value="1">パトアンサー</option>
 				</select>
-				<svg viewBox="0 0 320 512"><path d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z"></path></svg>
+				<svg viewBox="0 0 320 512"
+					><path
+						d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" /></svg>
 			</label>
 			<button type="submit">投稿</button>
 			<button type="button" on:click={resetComment}>キャンセル</button>
@@ -157,7 +159,7 @@
 		height: 1em;
 		position: absolute;
 		right: 0;
-		top: calc(50% - .5em);
+		top: calc(50% - 0.5em);
 	}
 
 	button {

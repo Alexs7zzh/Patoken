@@ -4,8 +4,9 @@
 	padding-bottom: var(--spacing-2);
 	@media screen and (min-width: #{variables.$breakpoint-s}px) {
 		display: grid;
-		grid-template: 'header comment' auto
-									 'main comment' auto / 3fr 2fr;
+		grid-template:
+			'header comment' auto
+			'main comment' auto / 3fr 2fr;
 	}
 
 	@media screen and (min-width: #{variables.$breakpoint-m}px) {
