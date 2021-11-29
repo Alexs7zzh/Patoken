@@ -21,8 +21,14 @@
 	import Pagination from '$components/Main/Pagination.svelte'
 	import Header from '$components/Header/index.svelte'
 	import Comment from '$components/Comment/index.svelte'
+	import { setContext } from 'svelte'
 	import type { Author } from '$lib/types'
 	export let posts: PostType[], pageUrls: string[], authors: Author[]
+
+	setContext(
+		'posts',
+		posts.map(post => post.slug)
+	)
 </script>
 
 <svelte:head>

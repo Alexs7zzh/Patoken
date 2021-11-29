@@ -2,6 +2,7 @@ import { writable, derived } from 'svelte/store'
 import { annotate, annotationGroup } from '@alexs7/rough-notation'
 import { wholeTextNodesInRange, removeHighlights } from './anchor/highlighter'
 import { RangeAnchor, TextPositionAnchor, TextQuoteAnchor } from './anchor/types'
+import { getContext } from 'svelte'
 
 import { browser } from '$app/env'
 import { swr } from '$lib/swr'
@@ -193,11 +194,10 @@ export function anchor(comment: Comment) {
 export function commentStore(path: string) {
 	let store, url
 	if (browser) {
-		if (path === '' || path.startsWith('page'))
-			url = `/api/comment?${Array.from(document.querySelectorAll('article'))
-				.map(i => `id=${i.id}`)
-				.join('&')}`
-		else url = `/api/comment?author=${path}`
+		if (path === '' || path.startsWith('page')) {
+			const posts = getContext('posts') as String[]
+			url = `/api/comment?${posts.map(i => `id=${i}`).join('&')}`
+		} else url = `/api/comment?author=${path}`
 
 		store = swr<Comment[]>(url, {
 			fetcher: async url => {
