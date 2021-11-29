@@ -65,7 +65,7 @@
 <blockquote on:click={() => scrollToHighlight(comment.id)}>
 	{@html comment.quote}
 </blockquote>
-<p>{comment.text}</p>
+<p class='comment-text'>{comment.text}</p>
 
 <style lang="scss">
 	.meta {
@@ -109,5 +109,9 @@
 		width: 1.6em;
 		height: 1.6em;
 		vertical-align: baseline;
+	}
+
+	.comment-text {
+		white-space: pre-wrap;
 	}
 </style>

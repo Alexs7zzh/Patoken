@@ -33,7 +33,7 @@
 
 	li {
 		margin: 0;
-		padding: var(--spacing-half) var(--spacing);
+		padding: var(--spacing-half) var(--spacing) var(--spacing);
 		border-bottom: 1px solid var(--color-coral);
 		contain: content;
 		&:last-child {
