@@ -6,6 +6,7 @@
 	import { login } from '$lib/auth'
 	import { goto } from '$app/navigation'
 	import { addToast, removeToast } from '$lib/toast'
+	import { userStore } from '$lib/auth'
 	import Toggle from '../components/Header/Toggle.svelte'
 	import { fade, fly } from 'svelte/transition'
 	import { quintOut } from 'svelte/easing'
@@ -40,13 +41,16 @@
 		let id
 		try {
 			id = addToast('Creating account…', 'info', 0)
-			await fetch('/api/user', {
+			const res = await fetch(`${import.meta.env.VITE_API_URL}/user`, {
 				method: 'POST',
+				credentials: 'include',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({ name })
 			})
+			if (res.status !== 200) throw new Error('Failed to create account')
+			userStore.set(await res.json())
 			removeToast(id)
 			redirect()
 		} catch (err) {

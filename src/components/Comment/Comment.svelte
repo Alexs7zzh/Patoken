@@ -17,8 +17,9 @@
 
 	function deleteComment(commentId: number) {
 		let id = addToast('Deleting', 'info', 0)
-		fetch(`/api/comment?id=${commentId}`, {
-			method: 'DELETE'
+		fetch(`${import.meta.env.VITE_API_URL}/comment?id=${commentId}`, {
+			method: 'DELETE',
+			credentials: 'include'
 		}).then(res => {
 			removeToast(id)
 			if (res.status === 200) {

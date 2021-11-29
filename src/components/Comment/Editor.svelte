@@ -24,11 +24,12 @@
 
 	function createComment() {
 		let id = addToast('投稿中...', 'info', 0)
-		fetch('/api/comment', {
+		fetch(`${import.meta.env.VITE_API_URL}/comment`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
+			credentials: 'include',
 			body: JSON.stringify({
 				...$currentComment,
 				text,
@@ -50,11 +51,12 @@
 
 	function editComment() {
 		let id = addToast('編集中...', 'info', 0)
-		fetch(`/api/comment?id=${$currentComment.id}`, {
+		fetch(`${import.meta.env.VITE_API_URL}/comment?id=${$currentComment.id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
 			},
+			credentials: 'include',
 			body: JSON.stringify({ text, category: selected === '0' ? 'BEFORE' : 'AFTER' })
 		}).then(res => {
 			removeToast(id)

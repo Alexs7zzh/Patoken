@@ -196,8 +196,8 @@ export function commentStore(path: string) {
 	if (browser) {
 		if (path === '' || path.startsWith('page')) {
 			const posts = getContext('posts') as String[]
-			url = `/api/comment?${posts.map(i => `id=${i}`).join('&')}`
-		} else url = `/api/comment?author=${path}`
+			url = `${import.meta.env.VITE_API_URL}/comment?${posts.map(i => `id=${i}`).join('&')}`
+		}	else url = `${import.meta.env.VITE_API_URL}/comment?author=${path}`
 
 		store = swr<Comment[]>(url, {
 			fetcher: async url => {

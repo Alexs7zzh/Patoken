@@ -23,7 +23,11 @@
 	onMount(async () => {
 		applyDarkModeSettings()
 		try {
-			const data = await (await fetch('/api/user')).json()
+			const data = await (
+				await fetch(`${import.meta.env.VITE_API_URL}/user`, {
+					credentials: 'include'
+				})
+			).json()
 			if (data && data.user) userStore.set(data.user)
 		} catch {
 			userStore.set(null)

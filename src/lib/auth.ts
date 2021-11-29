@@ -18,8 +18,9 @@ export async function login(email: string): Promise<{ email: string; name: null 
 	const magic = await createMagic()
 	const didToken = await magic.auth.loginWithMagicLink({ email })
 
-	const res = await fetch('/api/login', {
+	const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
 		method: 'POST',
+		credentials: 'include',
 		headers: {
 			Authorization: `Bearer ${didToken}`
 		}
