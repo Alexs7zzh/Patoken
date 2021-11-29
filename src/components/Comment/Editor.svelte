@@ -143,7 +143,8 @@
 		appearance: none;
 		border-radius: 0;
 		outline: none;
-		padding: 0.2em 0.1em;
+		padding: 0.2em 1.2em 0.2em 0.1em;
+
 		font-family: inherit;
 		font-size: inherit;
 		line-height: inherit;
