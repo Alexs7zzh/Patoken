@@ -9,7 +9,7 @@
 	$: ({ loading, before, after } = commentStore($page.path.slice(1)))
 </script>
 
-<header>
+<header class="handle">
 	<button class:selected={$selected === 0} on:click={() => selected.set(0)}>
 		考察<span>{$before ? $before.length : 0}</span>
 	</button>

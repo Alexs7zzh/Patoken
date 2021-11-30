@@ -37,10 +37,11 @@
 
 	function scrollToHighlight(id: number) {
 		const highlight = document.querySelector(`.highlight[data-for-comment="${id}"]`)
-		if (highlight) highlight.scrollIntoView({
-			behavior: 'smooth',
-			block: 'center'
-		})
+		if (highlight)
+			highlight.scrollIntoView({
+				behavior: 'smooth',
+				block: 'center'
+			})
 	}
 </script>
 

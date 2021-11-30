@@ -32,7 +32,8 @@
 		options = mobile
 			? {
 					axis: 'y',
-					position: { x: 0, y: $y }
+					position: { x: 0, y: $y },
+					handle: '.handle'
 			  }
 			: {
 					disabled: true,
@@ -50,12 +51,10 @@
 	function drag(e) {
 		y.set(e.detail.offsetY)
 	}
-	
+
 	function handleScroll() {
-		if (mobile && ref.style.top !== (window.innerHeight - 53) + 'px')
-			ref.style.top = (window.innerHeight - 53) + 'px'
-		if (!mobile && ref.style.top !== '0')
-			ref.style.top = '0'
+		if (mobile && ref.style.top !== window.innerHeight - 53 + 'px') ref.style.top = window.innerHeight - 53 + 'px'
+		if (!mobile && ref.style.top !== '0') ref.style.top = '0'
 	}
 </script>
 
@@ -76,15 +75,27 @@
 		transition: background-color 0.2s ease-out;
 
 		@media screen and (max-width: 680px) {
-			height: 100%;
+			height: calc(85vh + 60px);
 			width: 100%;
 			position: fixed;
 			top: calc(100% - 53px);
 			bottom: 0;
-			z-index: 3;
-			border-top-left-radius: 0.4em;
-			border-top-right-radius: 0.4em;
+			border-top-left-radius: 0.6em;
+			border-top-right-radius: 0.6em;
 			background-color: var(--color-secondary-bg);
+
+			&::before {
+				content: '';
+				position: absolute;
+				top: 7px;
+				left: 50%;
+				width: 3em;
+				height: 4px;
+				border-radius: 2px;
+				transform: translateX(-50%);
+				background-color: var(--color-text);
+				opacity: 0.7;
+			}
 		}
 
 		@media screen and (min-width: 680px) {
@@ -102,6 +113,11 @@
 		scroll-behavior: smooth;
 		&::-webkit-scrollbar {
 			display: none;
+		}
+
+		@media screen and (max-width: 680px) {
+			height: calc(100% - 54px);
+			padding-bottom: 45vh;
 		}
 	}
 

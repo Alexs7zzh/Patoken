@@ -23,10 +23,11 @@ function scrollToComment({ target }) {
 	const id = target.dataset.forComment
 	if (!id) return
 	const el = document.getElementById(`comment-${id}`)
-	if (el) el.scrollIntoView({
-		behavior: 'smooth',
-		block: 'center'
-	})
+	if (el)
+		el.scrollIntoView({
+			behavior: 'smooth',
+			block: 'center'
+		})
 }
 
 export function highlightRange(range: Range, options: HighlightRangeOptions = {}) {
