@@ -1,4 +1,4 @@
-import createPersistentStore from '$utils/createPersistentStore'
+import { createPersistentStore } from './utils'
 import type { Magic } from 'magic-sdk'
 
 let magic
