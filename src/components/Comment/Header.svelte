@@ -29,13 +29,16 @@
 <style lang="scss">
 	header {
 		width: 100%;
-		height: 2.4em;
+		height: 54px;
 		border-bottom: 1px solid var(--color-coral);
 		padding-right: var(--spacing-half);
 		user-select: none;
 		align-items: center;
 		contain: content;
 		display: flex;
+		@media screen and (min-width: 680px) {
+			height: 2.4em;
+		}
 	}
 
 	button {
@@ -56,7 +59,7 @@
 			border-bottom-color: var(--color-melon-dark);
 		}
 
-		@media(hover: hover) and (pointer: fine) {
+		@media (hover: hover) and (pointer: fine) {
 			&:hover {
 				border-bottom-color: var(--color-eggshell);
 			}
@@ -81,7 +84,6 @@
 		font-weight: bold;
 		position: relative;
 		margin-left: auto;
-		cursor: default;
 
 		&::after {
 			content: '';

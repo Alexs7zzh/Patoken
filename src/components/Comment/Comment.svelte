@@ -37,7 +37,10 @@
 
 	function scrollToHighlight(id: number) {
 		const highlight = document.querySelector(`.highlight[data-for-comment="${id}"]`)
-		if (highlight) highlight.scrollIntoView({ behavior: 'smooth' })
+		if (highlight) highlight.scrollIntoView({
+			behavior: 'smooth',
+			block: 'center'
+		})
 	}
 </script>
 
@@ -65,7 +68,7 @@
 <blockquote on:click={() => scrollToHighlight(comment.id)}>
 	{@html comment.quote}
 </blockquote>
-<p class='comment-text'>{comment.text}</p>
+<p class="comment-text">{comment.text}</p>
 
 <style lang="scss">
 	.meta {

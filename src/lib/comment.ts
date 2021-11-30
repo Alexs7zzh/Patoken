@@ -23,7 +23,10 @@ function scrollToComment({ target }) {
 	const id = target.dataset.forComment
 	if (!id) return
 	const el = document.getElementById(`comment-${id}`)
-	if (el) el.scrollIntoView({ behavior: 'smooth' })
+	if (el) el.scrollIntoView({
+		behavior: 'smooth',
+		block: 'center'
+	})
 }
 
 export function highlightRange(range: Range, options: HighlightRangeOptions = {}) {
@@ -197,7 +200,7 @@ export function commentStore(path: string) {
 		if (path === '' || path.startsWith('page')) {
 			const posts = getContext('posts') as String[]
 			url = `${import.meta.env.VITE_API_URL}/comment?${posts.map(i => `id=${i}`).join('&')}`
-		}	else url = `${import.meta.env.VITE_API_URL}/comment?author=${path}`
+		} else url = `${import.meta.env.VITE_API_URL}/comment?author=${path}`
 
 		store = swr<Comment[]>(url, {
 			fetcher: async url => {

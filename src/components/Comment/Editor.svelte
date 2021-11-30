@@ -153,6 +153,7 @@
 		font-size: inherit;
 		line-height: inherit;
 		cursor: pointer;
+		color: inherit;
 	}
 
 	svg {
