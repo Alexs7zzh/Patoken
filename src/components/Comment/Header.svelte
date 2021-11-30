@@ -36,6 +36,9 @@
 		align-items: center;
 		contain: content;
 		display: flex;
+		@media screen and (max-width: 680px) {
+			padding-top: 6px;
+		}
 		@media screen and (min-width: 680px) {
 			height: 2.4em;
 		}
