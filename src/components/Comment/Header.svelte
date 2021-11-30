@@ -50,7 +50,8 @@
 		padding: 0 var(--spacing-half);
 		display: inline-flex;
 		align-items: center;
-
+		color: var(--color-text);
+		
 		&.selected {
 			border-bottom-color: var(--color-melon-dark);
 		}
