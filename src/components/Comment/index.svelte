@@ -53,7 +53,7 @@
 	}
 
 	function handleScroll() {
-		if (mobile && ref.style.top !== window.innerHeight - 53 + 'px') ref.style.top = window.innerHeight - 53 + 'px'
+		if (mobile && ref.style.top !== window.innerHeight - 59 + 'px') ref.style.top = window.innerHeight - 59 + 'px'
 		if (!mobile && ref.style.top !== '0') ref.style.top = '0'
 	}
 </script>
@@ -75,11 +75,10 @@
 		transition: background-color 0.2s ease-out;
 
 		@media screen and (max-width: 680px) {
-			height: calc(85vh + 60px);
+			height: calc(85vh + 64px);
 			width: 100%;
 			position: fixed;
-			top: calc(100% - 53px);
-			bottom: 0;
+			top: calc(100% - 59px);
 			border-top-left-radius: 0.6em;
 			border-top-right-radius: 0.6em;
 			background-color: var(--color-secondary-bg);
@@ -116,7 +115,7 @@
 		}
 
 		@media screen and (max-width: 680px) {
-			height: calc(100% - 54px);
+			height: calc(100% - 60px);
 			padding-bottom: 45vh;
 		}
 	}

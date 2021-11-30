@@ -29,7 +29,7 @@
 <style lang="scss">
 	header {
 		width: 100%;
-		height: 54px;
+		height: 60px;
 		border-bottom: 1px solid var(--color-coral);
 		padding-right: var(--spacing-half);
 		user-select: none;
@@ -37,7 +37,7 @@
 		contain: content;
 		display: flex;
 		@media screen and (max-width: 680px) {
-			padding-top: 6px;
+			padding-top: 10px;
 		}
 		@media screen and (min-width: 680px) {
 			height: 2.4em;

@@ -39,6 +39,10 @@
 		&:last-child {
 			border-bottom: none;
 		}
+
+		@media screen and (max-width: 680px) {
+			padding: var(--spacing-half) var(--spacing-half) var(--spacing);
+		}
 	}
 
 	li:hover :global(.buttons) {
