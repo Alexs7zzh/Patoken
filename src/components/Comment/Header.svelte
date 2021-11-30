@@ -6,15 +6,15 @@
 	import DoubleBounce from '$components/Loading/DoubleBounce.svelte'
 	import { commentStore } from '$lib/comment'
 
-	$: ({ loading } = commentStore($page.path.slice(1)))
+	$: ({ loading, before, after } = commentStore($page.path.slice(1)))
 </script>
 
 <header>
 	<button class:selected={$selected === 0} on:click={() => selected.set(0)}>
-		<span>考察</span>
+		考察<span>{$before ? $before.length : 0}</span>
 	</button>
 	<button class:selected={$selected === 1} on:click={() => selected.set(1)}>
-		<span>パトアンサー</span>
+		パトアンサー<span>{$after ? $after.length : 0}</span>
 	</button>
 	{#if loading && $loading}
 		<DoubleBounce size="1" unit="em" style="margin-left:var(--spacing-half);" />
@@ -41,27 +41,29 @@
 	button {
 		border: none;
 		background: none;
-		padding: 0;
 		cursor: pointer;
 		font-size: 16px;
-	}
-
-	span {
-		height: 2.7em;
+		border-bottom: 4px solid transparent;
+		transition: border-color 0.5s ease-out;
+		height: 100%;
 		font-weight: bold;
 		padding: 0 var(--spacing-half);
 		display: inline-flex;
 		align-items: center;
-		border-bottom: 3px solid transparent;
-		transition: border-color 0.5s ease-out;
 
+		&.selected {
+			border-bottom-color: var(--color-melon-dark);
+		}
 		&:hover {
-			border-color: var(--color-blue);
+			border-bottom-color: var(--color-eggshell);
 		}
 	}
 
-	.selected span {
-		border-color: var(--color-melon-dark);
+	span {
+		font-size: var(--font-s);
+		position: relative;
+		top: -0.2em;
+		left: 0.5em;
 	}
 
 	p {
