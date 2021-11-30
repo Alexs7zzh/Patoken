@@ -51,12 +51,15 @@
 		display: inline-flex;
 		align-items: center;
 		color: var(--color-text);
-		
+
 		&.selected {
 			border-bottom-color: var(--color-melon-dark);
 		}
-		&:hover {
-			border-bottom-color: var(--color-eggshell);
+
+		@media(hover: hover) and (pointer: fine) {
+			&:hover {
+				border-bottom-color: var(--color-eggshell);
+			}
 		}
 	}
 
