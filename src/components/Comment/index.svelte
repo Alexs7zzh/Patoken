@@ -147,7 +147,7 @@
 
 		@media screen and (max-width: 680px) {
 			height: calc(100% - 60px);
-			padding-bottom: 45vh;
+			padding-bottom: 55vh;
 		}
 	}
 
