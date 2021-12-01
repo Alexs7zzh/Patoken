@@ -117,5 +117,6 @@
 
 	.comment-text {
 		white-space: pre-wrap;
+		font-size: 0.9em;
 	}
 </style>
