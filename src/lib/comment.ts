@@ -128,7 +128,9 @@ export function rangeToCurrentComment(range: Range): Comment | null {
 	const textNodes = wholeTextNodesInRange(range)
 	const quote = textNodes
 		.map(node => {
-			const wrapEl = document.createElement(node.parentElement.tagName)
+			let parent = node.parentElement
+			if (parent.tagName === 'SPAN') parent = parent.parentElement
+			const wrapEl = document.createElement(parent.tagName)
 			wrapEl.textContent = node.data
 			return wrapEl.outerHTML
 		})
