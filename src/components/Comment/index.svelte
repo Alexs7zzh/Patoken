@@ -5,18 +5,39 @@
 	import Editor from './Editor.svelte'
 	import { draggable } from 'svelte-drag'
 	import { spring } from 'svelte/motion'
-	import { browser } from '$app/env'
+	import { onMount } from 'svelte'
 
 	const selected = writable(0)
 
-	let ref
-	let height = browser ? window.innerHeight : 500
-	let mobile = browser ? window.innerWidth < 680 : false
-	let heights = [height - 59, height * 0.6, height * 0.15]
-	let y = spring(heights[0], {
+	let ref, option
+	let height
+	let mobile
+	let heights
+	let y = spring(undefined, {
 		stiffness: 0.2,
 		damping: 0.75
 	})
+
+	onMount(() => {
+		height = window.innerHeight
+		mobile = window.innerWidth < 680
+		heights = [height - 59, height * 0.6, height * 0.15]
+		ref.style.top = '0'
+		y.set(heights[0])
+	})
+
+	$: option = mobile ?
+		{
+			axis: 'y',
+			position: { x: 0, y: $y },
+			defaultPosition: { x: 0, y: $y },
+			handle: '.handle'
+		} :
+		{
+			position: { x: 0, y: 0 },
+			defaultPosition: { x: 0, y: 0 },
+			disabled: true
+		}
 
 	function dragStart() {
 		document.body.classList.add('noscroll')
@@ -58,15 +79,9 @@
 
 <div
 	id="comment"
-	bind:this={ref}
 	class="bottom"
-	use:draggable={{
-		axis: 'y',
-		position: { x: 0, y: mobile ? $y : 0 },
-		defaultPosition: { x: 0, y: mobile ? $y : 0 },
-		handle: '.handle',
-		...(!mobile && { disabled: true })
-	}}
+	bind:this={ref}
+	use:draggable={option}
 	on:svelte-drag:start={dragStart}
 	on:svelte-drag={drag}
 	on:svelte-drag:end={dragEnd}>
@@ -94,7 +109,7 @@
 			height: calc(85vh + 64px);
 			width: 100%;
 			position: fixed;
-			top: 0;
+			top: calc(100% - 59px);
 			border-top-left-radius: 0.6em;
 			border-top-right-radius: 0.6em;
 			background-color: var(--color-secondary-bg);
