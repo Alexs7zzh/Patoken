@@ -54,8 +54,16 @@
 			y.set(heights[0])
 			ref.classList.add('bottom')
 		} else ref.classList.remove('bottom')
-		if (oy < (heights[0] + heights[1]) / 2 && oy >= (heights[1] + heights[2]) / 2) y.set(heights[1])
-		if (oy < (heights[1] + heights[2]) / 2) y.set(heights[2])
+		if (oy < (heights[0] + heights[1]) / 2 && oy >= (heights[1] + heights[2]) / 2) {
+			y.set(heights[1])
+			const scrollEl = document.querySelector('.scroll') as HTMLElement
+			scrollEl.style.paddingBottom = '45vh'
+		}
+		if (oy < (heights[1] + heights[2]) / 2) {
+			y.set(heights[2])
+			const scrollEl = document.querySelector('.scroll') as HTMLElement
+			scrollEl.style.paddingBottom = null
+		}
 	}
 
 	function handleScroll() {
@@ -70,7 +78,11 @@
 		if (mobile !== width < 680) {
 			mobile = width < 680
 			if (mobile) y.set(heights[0])
-			else y.set(0)
+			else {
+				y.set(0)
+				const scrollEl = document.querySelector('.scroll') as HTMLElement
+				scrollEl.style.paddingBottom = null
+			}
 		}
 	}
 </script>
@@ -161,7 +173,7 @@
 
 		@media screen and (max-width: 680px) {
 			height: calc(100% - 60px);
-			padding-bottom: 55vh;
+			// padding-bottom: 55vh;
 		}
 	}
 
