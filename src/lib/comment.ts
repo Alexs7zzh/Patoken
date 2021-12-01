@@ -17,6 +17,7 @@ interface HighlightRangeOptions {
 	animate?: boolean
 	id?: number | null
 	isEdit?: boolean
+	postId?: string
 }
 
 function scrollToComment({ target }) {
@@ -77,12 +78,14 @@ export function highlightRange(range: Range, options: HighlightRangeOptions = {}
 	highlights.forEach(highlight => highlight.addEventListener('click', scrollToComment))
 
 	let annotation
+
 	if (highlights.length === 1 && highlights[0].textContent.length <= 8 && highlights[0].getClientRects().length === 1) {
 		annotation = annotate(highlights[0], {
 			type: 'box',
 			animate,
 			className: isEdit ? 'edit-annotation' : 'annotation',
-			commentId: String(id)
+			commentId: String(id),
+			rootId: options.postId
 		})
 		annotation.show()
 	} else {
@@ -92,7 +95,8 @@ export function highlightRange(range: Range, options: HighlightRangeOptions = {}
 				multiline: true,
 				animate,
 				className: isEdit ? 'edit-annotation' : 'annotation',
-				commentId: String(id)
+				commentId: String(id),
+				rootId: options.postId
 			})
 		)
 		const ag = annotationGroup(annotation)

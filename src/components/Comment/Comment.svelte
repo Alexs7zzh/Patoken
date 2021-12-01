@@ -10,7 +10,7 @@
 
 	onMount(() => {
 		const range = anchor(comment)
-		if (range) highlightRange(range, { animate: false, id: comment.id })
+		if (range) highlightRange(range, { animate: false, id: comment.id, postId: comment.postId })
 
 		return () => removeHighlightById(comment.id)
 	})

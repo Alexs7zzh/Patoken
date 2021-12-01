@@ -14,7 +14,7 @@
 		if (!comment) return
 		text = ''
 		removeEditHighlights()
-		if (comment.text.length === 0) highlightRange(anchor(comment) as Range, { animate: true, isEdit: true })
+		if (comment.text.length === 0) highlightRange(anchor(comment) as Range, { animate: true, isEdit: true, postId: comment.postId })
 		else text = comment.text
 		await tick()
 		document.getElementById('edit-form').scrollIntoView({ behavior: 'smooth' })
