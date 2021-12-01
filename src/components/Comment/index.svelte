@@ -5,62 +5,67 @@
 	import Editor from './Editor.svelte'
 	import { draggable } from 'svelte-drag'
 	import { spring } from 'svelte/motion'
-	import { onMount } from 'svelte'
-	import type { DragOptions } from 'svelte-drag'
+	import { browser } from '$app/env'
 
 	const selected = writable(0)
 
-	let width
-	let height
-	let heights
-	let mobile
 	let ref
-	let options: DragOptions = {}
-	let y = spring(undefined, {
+	let height = browser ? window.innerHeight : 500
+	let mobile = browser ? window.innerWidth < 680 : false
+	let heights = [0, -height * 0.4, -height * 0.85]
+	let y = spring(heights[0], {
 		stiffness: 0.2,
 		damping: 0.75
 	})
 
-	onMount(() => {
-		let h = window.innerHeight
-		heights = [0, -h * 0.4, -h * 0.85]
-		y.set(heights[0])
-	})
-
-	$: {
-		mobile = width < 680
-		options = mobile
-			? {
-					axis: 'y',
-					position: { x: 0, y: $y },
-					handle: '.handle'
-			  }
-			: {
-					disabled: true,
-					position: { x: 0, y: 0 }
-			  }
-	}
-
-	function dragEnd(e) {
-		const oy = e.detail.offsetY
-		if (oy >= (heights[0] + heights[1]) / 2) y.set(heights[0])
-		if (oy < (heights[0] + heights[1]) / 2 && oy >= (heights[1] + heights[2]) / 2) y.set(heights[1])
-		if (oy < (heights[1] + heights[2]) / 2) y.set(heights[2])
+	function dragStart() {
+		document.body.classList.add('noscroll')
 	}
 
 	function drag(e) {
 		y.set(e.detail.offsetY)
 	}
 
+	function dragEnd(e) {
+		document.body.classList.remove('noscroll')
+		const oy = e.detail.offsetY
+		if (oy >= (heights[0] + heights[1]) / 2) y.set(heights[0])
+		if (oy < (heights[0] + heights[1]) / 2 && oy >= (heights[1] + heights[2]) / 2) y.set(heights[1])
+		if (oy < (heights[1] + heights[2]) / 2) y.set(heights[2])
+	}
+
 	function handleScroll() {
-		if (mobile && ref.style.top !== window.innerHeight - 59 + 'px') ref.style.top = window.innerHeight - 59 + 'px'
-		if (!mobile && ref.style.top !== '0') ref.style.top = '0'
+		if (mobile && height !== window.innerHeight) {
+			ref.style.top = window.innerHeight - 59 + 'px'
+			height = window.innerHeight
+		}
+	}
+
+	function handleResize() {
+		let width = window.innerWidth
+		if (mobile !== width < 680) {
+			mobile = width < 680
+			if (mobile) y.set(heights[0])
+			else y.set(0)
+		}
 	}
 </script>
 
-<svelte:window bind:innerWidth={width} bind:innerHeight={height} on:scroll={handleScroll} />
+<svelte:window on:resize={handleResize} on:scroll={handleScroll} />
 
-<div id="comment" bind:this={ref} use:draggable={options} on:svelte-drag={drag} on:svelte-drag:end={dragEnd}>
+<div
+	id="comment"
+	bind:this={ref}
+	use:draggable={{
+		axis: 'y',
+		position: { x: 0, y: $y },
+		defaultPosition: { x: 0, y: $y },
+		handle: '.handle',
+		...(!mobile && { disabled: true })
+	}}
+	on:svelte-drag:start={dragStart}
+	on:svelte-drag={drag}
+	on:svelte-drag:end={dragEnd}>
 	<Header {selected} />
 	<div class="scroll">
 		<Editor />
@@ -69,6 +74,13 @@
 </div>
 
 <style lang="scss">
+	:global(body.noscroll) {
+		touch-action: none;
+    overflow: hidden;
+		-webkit-overflow-scrolling: contain;
+    overscroll-behavior: contain;
+	}
+
 	#comment {
 		contain: strict;
 		background-color: var(--color-bg);
