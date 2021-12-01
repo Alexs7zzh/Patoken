@@ -21,7 +21,7 @@
 	onMount(() => {
 		height = window.innerHeight
 		mobile = window.innerWidth < 680
-		heights = [height - 59, height * 0.6, height * 0.15]
+		heights = [height - 59, height * 0.5, height * 0.1]
 		ref.style.top = '0'
 		y.set(heights[0])
 	})
