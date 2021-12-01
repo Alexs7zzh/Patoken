@@ -20,7 +20,17 @@
 	import Post from '$components/Main/Post.svelte'
 	import Header from '$components/Header/index.svelte'
 	import Comment from '$components/Comment/index.svelte'
+	import { userStore } from '$lib/auth'
 	export let author, posts: PostType[], toc, authors
+
+	let Tooltip
+
+	userStore.subscribe(value => {
+		if (value)
+			import('$components/Tooltip/Tooltip.svelte').then(({ default: module }) => {
+				Tooltip = module
+			})
+	})
 
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1)
@@ -38,3 +48,4 @@
 	{/each}
 </main>
 <Comment />
+<svelte:component this={Tooltip} />

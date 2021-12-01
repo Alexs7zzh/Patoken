@@ -50,4 +50,28 @@
 			height: 1.6em;
 		}
 	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(html:not([data-user-color-scheme])) {
+			.moon {
+				opacity: 0 !important;
+				transform: rotate(120deg) !important;
+			}
+			.sun {
+				opacity: 1 !important;
+				transform: translateY(-0.1em) rotate(120deg) !important;
+			}
+		}
+	}
+
+	:global(html[data-user-color-scheme='dark']) {
+		.moon {
+			opacity: 0 !important;
+			transform: rotate(120deg) !important;
+		}
+		.sun {
+			opacity: 1 !important;
+			transform: translateY(-0.1em) rotate(120deg) !important;
+		}
+	}
 </style>

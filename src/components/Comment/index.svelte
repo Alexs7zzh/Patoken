@@ -26,18 +26,18 @@
 		y.set(heights[0])
 	})
 
-	$: option = mobile ?
-		{
-			axis: 'y',
-			position: { x: 0, y: $y },
-			defaultPosition: { x: 0, y: $y },
-			handle: '.handle'
-		} :
-		{
-			position: { x: 0, y: 0 },
-			defaultPosition: { x: 0, y: 0 },
-			disabled: true
-		}
+	$: option = mobile
+		? {
+				axis: 'y',
+				position: { x: 0, y: $y },
+				defaultPosition: { x: 0, y: $y },
+				handle: '.handle'
+		  }
+		: {
+				position: { x: 0, y: 0 },
+				defaultPosition: { x: 0, y: 0 },
+				disabled: true
+		  }
 
 	function dragStart() {
 		document.body.classList.add('noscroll')
@@ -113,6 +113,10 @@
 			border-top-left-radius: 0.6em;
 			border-top-right-radius: 0.6em;
 			background-color: var(--color-secondary-bg);
+			--shadow-color: 0deg 0% 76%;
+			box-shadow: 0px -0.4px 0.5px hsl(var(--shadow-color) / 0.13),
+				0px -1.2px 1.5px -0.5px hsl(var(--shadow-color) / 0.17), 0px -2.7px 3.4px -1px hsl(var(--shadow-color) / 0.21),
+				0.1px -5.9px 7.5px -1.5px hsl(var(--shadow-color) / 0.25);
 
 			&::before {
 				content: '';
@@ -123,7 +127,7 @@
 				height: 4px;
 				border-radius: 2px;
 				transform: translateX(-50%);
-				background-color: var(--color-text);
+				background-color: var(--color-coral);
 				opacity: 0.7;
 			}
 		}
@@ -131,6 +135,16 @@
 		@media screen and (min-width: 680px) {
 			border-left: 1px solid var(--color-coral);
 		}
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(html:not([data-user-color-scheme])) #comment {
+			box-shadow: none;
+		}
+	}
+
+	:global(html[data-user-color-scheme='dark']) #comment {
+		box-shadow: none;
 	}
 
 	.scroll {

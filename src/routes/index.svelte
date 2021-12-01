@@ -22,8 +22,18 @@
 	import Header from '$components/Header/index.svelte'
 	import Comment from '$components/Comment/index.svelte'
 	import { setContext } from 'svelte'
+	import { userStore } from '$lib/auth'
 	import type { Author } from '$lib/types'
 	export let posts: PostType[], pageUrls: string[], authors: Author[]
+
+	let Tooltip
+
+	userStore.subscribe(value => {
+		if (value)
+			import('$components/Tooltip/Tooltip.svelte').then(({ default: module }) => {
+				Tooltip = module
+			})
+	})
 
 	setContext(
 		'posts',
@@ -43,3 +53,4 @@
 	<Pagination {pageUrls} />
 </main>
 <Comment />
+<svelte:component this={Tooltip} />

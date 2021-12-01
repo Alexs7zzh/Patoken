@@ -18,8 +18,6 @@
 	import { onMount } from 'svelte'
 	import { userStore } from '$lib/auth'
 
-	let Tooltip
-
 	onMount(async () => {
 		applyDarkModeSettings()
 		try {
@@ -33,13 +31,7 @@
 			userStore.set(null)
 		}
 	})
-
-	$: $userStore &&
-		import('$components/Tooltip/Tooltip.svelte').then(({ default: module }) => {
-			Tooltip = module
-		})
 </script>
 
 <slot />
 <Toasts />
-<svelte:component this={Tooltip} />

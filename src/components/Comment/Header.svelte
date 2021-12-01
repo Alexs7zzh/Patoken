@@ -3,7 +3,7 @@
 
 	import { userStore } from '$lib/auth'
 	import { page } from '$app/stores'
-	import DoubleBounce from '$components/Loading/DoubleBounce.svelte'
+	import DoubleBounce from '$components/Elements/DoubleBounce.svelte'
 	import { commentStore } from '$lib/comment'
 
 	$: ({ loading, before, after } = commentStore($page.path.slice(1)))

@@ -45,16 +45,6 @@ $breakpoint-m: 1024;
 		--color-black: var(--color-bg);
 		--color-blue-text: var(--color-blue);
 	}
-
-	:root:not([data-user-color-scheme]) .moon {
-		opacity: 0 !important;
-		transform: rotate(120deg) !important;
-	}
-
-	:root:not([data-user-color-scheme]) .sun {
-		opacity: 1 !important;
-		transform: translateY(-0.1em) rotate(120deg) !important;
-	}
 }
 
 :root[data-user-color-scheme='dark'] {
@@ -71,14 +61,4 @@ $breakpoint-m: 1024;
 	--color-hr: var(--color-coral);
 	--color-black: var(--color-bg);
 	--color-blue-text: var(--color-blue);
-}
-
-:root[data-user-color-scheme='dark'] .moon {
-	opacity: 0 !important;
-	transform: rotate(120deg) !important;
-}
-
-:root[data-user-color-scheme='dark'] .sun {
-	opacity: 1 !important;
-	transform: translateY(-0.1em) rotate(120deg) !important;
 }

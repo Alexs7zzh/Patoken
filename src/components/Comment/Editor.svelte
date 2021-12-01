@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Select from '$components/Elements/Select.svelte'
 	import { currentComment, removeEditHighlights } from '$lib/comment'
 	import { slide } from 'svelte/transition'
 	import { quintOut } from 'svelte/easing'
@@ -7,19 +8,22 @@
 	import { anchor, highlightRange, commentStore } from '$lib/comment'
 	import { tick } from 'svelte'
 
-	let text, selected
+	let text,
+		selected,
+		options = ['考察', 'パトアンサー']
 	$: ({ refresh } = commentStore($page.path.slice(1)))
 
 	currentComment.subscribe(async comment => {
 		if (!comment) return
 		text = ''
 		removeEditHighlights()
-		if (comment.text.length === 0) highlightRange(anchor(comment) as Range, { animate: true, isEdit: true, postId: comment.postId })
+		if (comment.text.length === 0)
+			highlightRange(anchor(comment) as Range, { animate: true, isEdit: true, postId: comment.postId })
 		else text = comment.text
 		await tick()
 		document.getElementById('edit-form').scrollIntoView({ behavior: 'smooth' })
 		document.getElementById('edit-textarea').focus()
-		selected = comment.category === 'BEFORE' ? '0' : '1'
+		selected = comment.category === 'BEFORE' ? options[0] : options[1]
 	})
 
 	function createComment() {
@@ -33,7 +37,7 @@
 			body: JSON.stringify({
 				...$currentComment,
 				text,
-				category: selected === '0' ? 'BEFORE' : 'AFTER'
+				category: selected === options[0] ? 'BEFORE' : 'AFTER'
 			})
 		}).then(res => {
 			removeToast(id)
@@ -57,7 +61,7 @@
 				'Content-Type': 'application/json'
 			},
 			credentials: 'include',
-			body: JSON.stringify({ text, category: selected === '0' ? 'BEFORE' : 'AFTER' })
+			body: JSON.stringify({ text, category: selected === options[0] ? 'BEFORE' : 'AFTER' })
 		}).then(res => {
 			removeToast(id)
 			if (res.status === 200) {
@@ -92,15 +96,7 @@
 		</blockquote>
 		<textarea bind:value={text} id="edit-textarea" />
 		<div>
-			<label for="editor-select">
-				<select id="editor-select" bind:value={selected}>
-					<option value="0">考察</option>
-					<option value="1">パトアンサー</option>
-				</select>
-				<svg viewBox="0 0 320 512"
-					><path
-						d="M143 352.3L7 216.3c-9.4-9.4-9.4-24.6 0-33.9l22.6-22.6c9.4-9.4 24.6-9.4 33.9 0l96.4 96.4 96.4-96.4c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9l-136 136c-9.2 9.4-24.4 9.4-33.8 0z" /></svg>
-			</label>
+			<Select bind:selected {options} />
 			<button type="submit">投稿</button>
 			<button type="button" on:click={resetComment}>キャンセル</button>
 		</div>
@@ -134,37 +130,6 @@
 		margin-top: 0.6em;
 	}
 
-	label {
-		border-bottom: 1px solid var(--color-melon);
-		position: relative;
-	}
-
-	select {
-		background-color: transparent;
-		border: none;
-		-webkit-appearance: none;
-		-moz-appearance: none;
-		appearance: none;
-		border-radius: 0;
-		outline: none;
-		padding: 0.2em 1.2em 0.2em 0.1em;
-
-		font-family: inherit;
-		font-size: inherit;
-		line-height: inherit;
-		cursor: pointer;
-		color: inherit;
-	}
-
-	svg {
-		fill: var(--color-text);
-		width: 1em;
-		height: 1em;
-		position: absolute;
-		right: 0;
-		top: calc(50% - 0.5em);
-	}
-
 	button {
 		border: none;
 		background: none;
@@ -174,7 +139,7 @@
 		font-weight: bold;
 		position: relative;
 		margin: 0;
-		-webkit-transform-style: preserve-3d;
+		transform-style: preserve-3d;
 
 		&::after {
 			content: '';
@@ -185,10 +150,9 @@
 			height: 0.1em;
 			background-color: currentColor;
 			transition: transform 300ms;
-			-webkit-backface-visibility: hidden;
+			backface-visibility: hidden;
 
 			transform: scale(0);
-			-webkit-transform: scale(0);
 			transform-origin: center;
 		}
 
