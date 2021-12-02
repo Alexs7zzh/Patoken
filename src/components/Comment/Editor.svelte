@@ -107,6 +107,9 @@
 	form {
 		padding: var(--spacing-half) var(--spacing);
 		background-color: var(--color-secondary-bg);
+		@media screen and (max-width: 680px) {
+			padding: var(--spacing-half);
+		}
 	}
 
 	textarea {
