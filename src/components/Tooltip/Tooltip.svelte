@@ -36,8 +36,22 @@
 			show = true
 			if (popper === null) {
 				popper = createPopper(virtualElement, tooltip, {
-					placement: 'top',
-					modifiers: [preventOverflow, flip, hide, { ...offset, options: { offset: [0, 12] } }]
+					placement: 'bottom',
+					modifiers: [
+						preventOverflow,
+						hide,
+						{
+							...flip,
+							options: {
+								fallbackPlacements: ['top'],
+								padding: 12
+							}
+						},
+						{
+							...offset,
+							options: { offset: [0, 12] }
+						}
+					]
 				})
 			}
 			popper.update()
@@ -63,7 +77,6 @@
 
 <style lang="scss">
 	#tooltip {
-		position: absolute;
 		background-color: var(--color-eggshell);
 		color: var(--color-black);
 		padding: 0.2em 0.4em;
