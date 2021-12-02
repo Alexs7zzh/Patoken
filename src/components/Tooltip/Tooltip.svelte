@@ -1,6 +1,8 @@
 <script lang="ts">
-	import createPopper from './popper/index'
-	import { preventOverflow, flip, offset, hide } from './popper/modifiers'
+	import { createPopper } from '@popperjs/core/lib/popper-lite'
+	import flip from '@popperjs/core/lib/modifiers/flip';
+	import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
+	import offset from '@popperjs/core/lib/modifiers/offset';
 	import { onMount } from 'svelte'
 	import { currentComment, rangeToCurrentComment } from '$lib/comment'
 
@@ -36,11 +38,15 @@
 			show = true
 			if (popper === null) {
 				popper = createPopper(virtualElement, tooltip, {
-					placement: 'top',
+					placement: window.matchMedia('(max-width: 680px)').matches ? 'bottom' : 'top',
 					modifiers: [
 						preventOverflow,
-						hide,
-						flip,
+						{
+							...flip,
+							options: {
+								padding: 60
+							}
+						},
 						{
 							...offset,
 							options: { offset: [0, 12] }
@@ -48,6 +54,7 @@
 					]
 				})
 			}
+			console.log(range.getBoundingClientRect())
 			popper.update()
 		}
 	}
