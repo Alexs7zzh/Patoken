@@ -78,12 +78,12 @@
 
 <style lang="scss">
 	#tooltip {
-		background-color: var(--color-eggshell);
+		background-color: var(--color-blue);
 		color: var(--color-black);
-		padding: 0.2em 0.4em;
-		border-radius: 0.2em;
+		padding: 0.2em 0.3em;
+		border-radius: 0.5em;
 		border: none;
-		font-size: 1em;
+		font-size: 0.9em;
 		cursor: pointer;
 		transition: background-color 0.4s ease-out;
 		user-select: none;
