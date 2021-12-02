@@ -12,7 +12,7 @@ const resetRootDarkModeAttributeAndLS = () => {
 	colorSchemeMetaElement.setAttribute('content', 'dark light')
 }
 
-export const applyDarkModeSettings = (mode = undefined) => {
+const applyDarkModeSettings = (mode = undefined) => {
 	if (typeof window === 'undefined') return
 	let currentSetting = mode || localStorage.getItem(darkModeStorageKey)
 	const mediaQueryMode = getMediaQueryMode()
