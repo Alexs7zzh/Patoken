@@ -31,7 +31,7 @@
 
 	userStore.subscribe(value => {
 		if (value)
-			import('$components/Tooltip/Tooltip.svelte').then(({ default: module }) => {
+			import('$components/Comment/Tooltip.svelte').then(({ default: module }) => {
 				Tooltip = module
 			})
 	})
