@@ -2,7 +2,6 @@ import path from 'path'
 import preprocess from 'svelte-preprocess'
 import vercel from '@sveltejs/adapter-vercel'
 import autoprefixer from 'autoprefixer'
-import { minifyHtml } from 'vite-plugin-html'
 
 const config = {
 	preprocess: preprocess({
@@ -23,7 +22,6 @@ const config = {
 			optimizeDeps: {
 				exclude: ['sswr']
 			},
-			plugins: [minifyHtml()],
 			css: {
 				postcss: {
 					plugins: [autoprefixer()]
