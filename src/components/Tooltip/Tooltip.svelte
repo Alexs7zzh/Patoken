@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { createPopper } from '@popperjs/core/lib/popper-lite'
-	import flip from '@popperjs/core/lib/modifiers/flip';
-	import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
-	import offset from '@popperjs/core/lib/modifiers/offset';
+	import flip from '@popperjs/core/lib/modifiers/flip'
+	import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow'
+	import offset from '@popperjs/core/lib/modifiers/offset'
 	import { onMount } from 'svelte'
 	import { currentComment, rangeToCurrentComment } from '$lib/comment'
 
