@@ -8,7 +8,26 @@
 		<meta name="theme-color" id="theme-color" />
 		<meta name="color-scheme" id="color-scheme" content="dark light" />
 		<script>
-		const s="user-color-scheme";const a=()=>window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";const o=(o=undefined)=>{const e=document.documentElement;const c="data-user-color-scheme";const t=document.getElementById("color-scheme");let n=o||localStorage.getItem(s);const r=a();if(n&&n!==r){e.setAttribute(c,n);t.setAttribute("content",n)}else{e.removeAttribute(c);localStorage.removeItem(s);t.setAttribute("content","dark light");n=r}document.getElementById("theme-color").setAttribute("content",n==="dark"?"#212020":"#fafafa")};o();
+			const s = 'user-color-scheme'
+			const a = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+			const o = (o = undefined) => {
+				const e = document.documentElement
+				const c = 'data-user-color-scheme'
+				const t = document.getElementById('color-scheme')
+				let n = o || localStorage.getItem(s)
+				const r = a()
+				if (n && n !== r) {
+					e.setAttribute(c, n)
+					t.setAttribute('content', n)
+				} else {
+					e.removeAttribute(c)
+					localStorage.removeItem(s)
+					t.setAttribute('content', 'dark light')
+					n = r
+				}
+				document.getElementById('theme-color').setAttribute('content', n === 'dark' ? '#212020' : '#fafafa')
+			}
+			o()
 		</script>
 		%svelte.head%
 	</head>

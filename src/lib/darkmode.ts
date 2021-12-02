@@ -1,7 +1,6 @@
 const darkModeStorageKey = 'user-color-scheme'
 
-const getMediaQueryMode = () =>
-	window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+const getMediaQueryMode = () => (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
 
 const applyDarkModeSettings = (mode = undefined) => {
 	const rootElement = document.documentElement
