@@ -11,8 +11,9 @@
 	margin: 0;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+	height: 100%;
 }
 
 img,
@@ -23,8 +24,11 @@ picture {
 	cursor: pointer;
 }
 
-input, button, textarea, select {
-  font: inherit;
+input,
+button,
+textarea,
+select {
+	font: inherit;
 }
 
 html {
@@ -41,8 +45,14 @@ body {
 	line-height: var(--line-height);
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
 }
 
 :target {
