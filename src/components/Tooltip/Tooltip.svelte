@@ -36,17 +36,11 @@
 			show = true
 			if (popper === null) {
 				popper = createPopper(virtualElement, tooltip, {
-					placement: 'bottom',
+					placement: 'top',
 					modifiers: [
 						preventOverflow,
 						hide,
-						{
-							...flip,
-							options: {
-								fallbackPlacements: ['top'],
-								padding: 12
-							}
-						},
+						flip,
 						{
 							...offset,
 							options: { offset: [0, 12] }
