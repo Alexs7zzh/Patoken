@@ -7,21 +7,12 @@
 	text-rendering: optimizeLegibility;
 }
 
-body,
-h1,
-h2,
-h3,
-h4,
-p,
-figure,
-blockquote,
-dl,
-dd {
+* {
 	margin: 0;
 }
 
-html {
-	position: relative;
+html, body {
+  height: 100%;
 }
 
 img,
@@ -32,20 +23,14 @@ picture {
 	cursor: pointer;
 }
 
-:target {
-	@supports (scroll-margin-top: 2em) {
-		scroll-margin-top: 2em;
-	}
-	@supports not (scroll-margin-top: 2em) {
-		scroll-snap-margin-top: 2em;
-	}
+input, button, textarea, select {
+  font: inherit;
 }
 
 html {
-	margin: 0;
-	padding: 0;
 	text-size-adjust: 100%;
 	font-size: 18px;
+	position: relative;
 }
 
 body {
@@ -53,6 +38,20 @@ body {
 	background-color: var(--color-bg);
 	font-family: var(--font-sans);
 	transition: all 0.2s ease-out;
+	line-height: var(--line-height);
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+:target {
+	@supports (scroll-margin-top: 2em) {
+		scroll-margin-top: 2em;
+	}
+	@supports not (scroll-margin-top: 2em) {
+		scroll-snap-margin-top: 2em;
+	}
 }
 
 ::selection {
