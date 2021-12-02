@@ -29,6 +29,6 @@
 		"svelte-drag": "^2.3.2"
 	},
 	"simple-git-hooks": {
-    "pre-push": "cd ../ && npm run format"
+    "pre-push": "npm run format"
 	}
 }
