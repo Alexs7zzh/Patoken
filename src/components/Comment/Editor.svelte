@@ -122,7 +122,6 @@
 		border: 1px solid var(--color-coral);
 		cursor: auto;
 		outline: none;
-		font-family: inherit;
 		margin-top: var(--spacing-half);
 		line-height: 1.6;
 	}

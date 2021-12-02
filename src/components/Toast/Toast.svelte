@@ -36,7 +36,6 @@
 		justify-content: space-between;
 		align-items: center;
 		text-decoration: none;
-		font-family: inherit;
 		font-weight: 400;
 		font-size: 1em;
 		padding: var(--as-toast-padding, 1em);
