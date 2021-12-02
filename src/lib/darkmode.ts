@@ -1,19 +1,13 @@
-const rootElement = typeof window !== 'undefined' && document.documentElement
-const darkModeAttributeName = 'data-user-color-scheme'
 const darkModeStorageKey = 'user-color-scheme'
-const colorSchemeMetaElement = typeof window !== 'undefined' && document.getElementById('color-scheme')
 
 const getMediaQueryMode = () =>
-	typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-
-const resetRootDarkModeAttributeAndLS = () => {
-	rootElement.removeAttribute(darkModeAttributeName)
-	localStorage.removeItem(darkModeStorageKey)
-	colorSchemeMetaElement.setAttribute('content', 'dark light')
-}
+	window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 
 const applyDarkModeSettings = (mode = undefined) => {
-	if (typeof window === 'undefined') return
+	const rootElement = document.documentElement
+	const darkModeAttributeName = 'data-user-color-scheme'
+	const colorSchemeMetaElement = document.getElementById('color-scheme')
+
 	let currentSetting = mode || localStorage.getItem(darkModeStorageKey)
 	const mediaQueryMode = getMediaQueryMode()
 
@@ -21,7 +15,9 @@ const applyDarkModeSettings = (mode = undefined) => {
 		rootElement.setAttribute(darkModeAttributeName, currentSetting)
 		colorSchemeMetaElement.setAttribute('content', currentSetting)
 	} else {
-		resetRootDarkModeAttributeAndLS()
+		rootElement.removeAttribute(darkModeAttributeName)
+		localStorage.removeItem(darkModeStorageKey)
+		colorSchemeMetaElement.setAttribute('content', 'dark light')
 		currentSetting = mediaQueryMode
 	}
 	document.getElementById('theme-color').setAttribute('content', currentSetting === 'dark' ? '#212020' : '#fafafa')
