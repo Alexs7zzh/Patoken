@@ -31,28 +31,10 @@ $breakpoint-m: 1024;
 		'Hiragino Kaku Gothic Pro', 'Osaka', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'MS PGothic';
 }
 
-@media (prefers-color-scheme: dark) {
-	:root:not([data-user-color-scheme]) {
-		--color-text: #fafafa;
-		--color-bg: #212020;
-		--color-secondary-bg: #2c2d2d;
-		--color-blue: #{color.scale(#aed9e0, $lightness: -10%, $saturation: -20%)};
-		--color-eggshell: #{color.scale(#faecbe, $lightness: -15%, $saturation: -50%)};
-		--color-melon: #{color.scale(#ffa69e, $lightness: -15%, $saturation: -20%)};
-		--color-coral: #{color.scale(#5e6472, $lightness: 70%)};
-
-		--color-hr: var(--color-coral);
-		--color-black: var(--color-bg);
-		--color-blue-text: var(--color-blue);
-	}
-}
-
-:root[data-user-color-scheme='dark'] {
-	scrollbar-color: dark;
-
+@mixin darkmode {
 	--color-text: #fafafa;
 	--color-bg: #212020;
-	--color-secondary-bg: #2c2a2a;
+	--color-secondary-bg: #2c2d2d;
 	--color-blue: #{color.scale(#aed9e0, $lightness: -10%, $saturation: -20%)};
 	--color-eggshell: #{color.scale(#faecbe, $lightness: -15%, $saturation: -50%)};
 	--color-melon: #{color.scale(#ffa69e, $lightness: -15%, $saturation: -20%)};
@@ -61,4 +43,15 @@ $breakpoint-m: 1024;
 	--color-hr: var(--color-coral);
 	--color-black: var(--color-bg);
 	--color-blue-text: var(--color-blue);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-user-color-scheme]) {
+		@include darkmode;
+	}
+}
+
+:root[data-user-color-scheme='dark'] {
+	scrollbar-color: dark;
+	@include darkmode;
 }
