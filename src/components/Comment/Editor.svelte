@@ -22,7 +22,7 @@
 		else text = comment.text
 		await tick()
 		document.getElementById('edit-form').scrollIntoView({ behavior: 'smooth' })
-		document.getElementById('edit-textarea').focus()
+		if(!window.matchMedia('(max-width: 680px)').matches) document.getElementById('edit-textarea').focus()
 		selected = comment.category === 'BEFORE' ? options[0] : options[1]
 	})
 
