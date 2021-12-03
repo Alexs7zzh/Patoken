@@ -15,7 +15,7 @@
 
 <style lang="scss">
 	label {
-		border-bottom: 1px solid var(--color-melon);
+		border-bottom: 2px solid var(--color-melon);
 		position: relative;
 	}
 
@@ -27,9 +27,10 @@
 		appearance: none;
 		border-radius: 0;
 		outline: none;
-		padding: 0.2em 1.2em 0.2em 0.1em;
+		padding-right: 1.2em;
 		cursor: pointer;
 		color: inherit;
+		font-size: 0.9em;
 	}
 
 	svg {
