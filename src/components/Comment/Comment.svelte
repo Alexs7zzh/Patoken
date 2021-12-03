@@ -102,16 +102,16 @@
 
 	.edit {
 		fill: var(--color-blue-text);
-		width: 1.5em;
-		height: 1.5em;
+		width: 1.1em;
+		height: 1.1em;
 		vertical-align: baseline;
 	}
 
 	.delete {
 		margin-left: 0.3em;
 		fill: var(--color-melon-dark);
-		width: 1.6em;
-		height: 1.6em;
+		width: 1.2em;
+		height: 1.2em;
 		vertical-align: baseline;
 	}
 
