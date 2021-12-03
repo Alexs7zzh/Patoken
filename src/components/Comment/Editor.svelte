@@ -116,7 +116,7 @@
 		width: 100%;
 		height: 14em;
 		background-color: var(--color-bg);
-		font-size: .9em;
+		font-size: 0.9em;
 		resize: none;
 		padding: 0.6em 0.8em;
 		border: 1px solid var(--color-coral);
@@ -137,7 +137,7 @@
 		background: none;
 		padding: 0;
 		cursor: pointer;
-		font-size: .9em;
+		font-size: 0.9em;
 		font-weight: bold;
 		position: relative;
 		margin: 0;
