@@ -161,19 +161,18 @@
 
 	.scroll {
 		contain: content;
-		overflow-y: scroll;
+		overflow: scroll;
 		height: calc(100vh - 2.4em);
-		-ms-overflow-style: none;
-		scrollbar-width: none;
 		padding-bottom: var(--spacing);
 		scroll-behavior: smooth;
+
+		scrollbar-width: none;
 		&::-webkit-scrollbar {
 			display: none;
 		}
 
 		@media screen and (max-width: 680px) {
 			height: calc(100% - 60px);
-			// padding-bottom: 55vh;
 		}
 	}
 
