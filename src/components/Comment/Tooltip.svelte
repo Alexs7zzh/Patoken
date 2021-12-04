@@ -8,8 +8,7 @@
 	let mobile = false
 
 	const virtualElement = {
-		getBoundingClientRect: () => range.getBoundingClientRect(),
-		contextElement: document.getElementsByTagName('main')[0]
+		getBoundingClientRect: () => range.getBoundingClientRect()
 	}
 
 	const update = () => {
