@@ -116,6 +116,7 @@
 		contain: strict;
 		background-color: var(--color-bg);
 		transition: background-color 0.2s ease-out;
+		z-index: 1;
 
 		@media screen and (max-width: 680px) {
 			height: calc(85vh + 64px);

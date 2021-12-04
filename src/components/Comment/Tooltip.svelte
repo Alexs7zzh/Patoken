@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { computePosition, flip, shift, offset } from '@floating-ui/dom'
+	import { computePosition, shift, offset } from '@floating-ui/dom'
 	import { onMount } from 'svelte'
 	import { currentComment, rangeToCurrentComment } from '$lib/comment'
 
@@ -8,19 +8,23 @@
 	let mobile = false
 
 	const virtualElement = {
-		getBoundingClientRect: () => range.getBoundingClientRect()
+		getBoundingClientRect: () => range.getBoundingClientRect(),
+		contextElement: document.getElementsByTagName('main')[0]
 	}
 
 	const update = () => {
 		computePosition(virtualElement, tooltip, {
 			placement: mobile ? 'bottom' : 'top',
-			middleware: [flip(), shift({ padding: 12 }), offset(12)]
+			middleware: [shift({ padding: 12 }), offset(12)]
 		}).then(({ x, y }) => {
 			tooltip.style.transform = `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0)`
 		})
 	}
 
-	const resizeObserver = new ResizeObserver(update)
+	const resizeObserver = new ResizeObserver(() => {
+		mobile = window.innerWidth < 680
+		update()
+	})
 
 	function showTooltip() {
 		tooltip.style.display = 'block'
