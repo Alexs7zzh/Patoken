@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"module": "es2020",
-		"lib": ["es2020", "DOM", "DOM.Iterable", "WebWorker"],
+		"lib": ["es2020", "DOM", "WebWorker"],
 		"target": "es2020",
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
@@ -19,6 +19,5 @@
 			"$components/*": ["src/components/*"]
 		}
 	},
-	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte", "src/service-worker.ts"],
-	"exclude": ["src/components/Tooltip/popper/*"]
+	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte"]
 }
