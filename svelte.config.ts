@@ -11,7 +11,7 @@ const config = {
 	}),
 	kit: {
 		target: '#svelte',
-		adapter: vercel({ precompress: true }),
+		adapter: vercel(),
 		vite: {
 			resolve: {
 				alias: {
@@ -19,9 +19,6 @@ const config = {
 				}
 			},
 			clearScreen: false,
-			optimizeDeps: {
-				exclude: ['sswr']
-			},
 			css: {
 				postcss: {
 					plugins: [autoprefixer()]
