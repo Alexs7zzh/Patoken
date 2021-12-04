@@ -66,6 +66,13 @@
 		}
 	}
 
+	function handleScroll() {
+		if (mobile && ref.classList.contains('bottom') && height !== window.innerHeight) {
+			height = window.innerHeight
+			y.set(height - 59, { hard: true })
+		}
+	}
+
 	function handleResize() {
 		let width = window.innerWidth
 		if (mobile !== width < 680) {
@@ -77,14 +84,10 @@
 				scrollEl.style.paddingBottom = null
 			}
 		}
-		if (mobile && ref.classList.contains('bottom') && height !== window.innerHeight) {
-			height = window.innerHeight
-			y.set(height - 59, { hard: true })
-		}
 	}
 </script>
 
-<svelte:window on:resize={handleResize} />
+<svelte:window on:resize={handleResize} on:scroll={handleScroll} />
 
 <div
 	id="comment"
