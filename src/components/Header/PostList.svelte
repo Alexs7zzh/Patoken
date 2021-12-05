@@ -43,16 +43,17 @@
 <style lang="scss">
 	h2 {
 		font-size: var(--font);
+		margin-bottom: 0;
+		@media screen and (min-width: 1024px) {
+			margin-bottom: 0.2em;
+		}
 	}
 
 	ul {
 		padding: 0;
-		list-style-position: inside;
+		list-style: none;
 
-		@media screen and (max-width: 680px) {
-			margin-top: var(--spacing-half);
-			list-style: none;
-		}
+		padding-bottom: var(--spacing-half);
 	}
 
 	li {
