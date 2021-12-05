@@ -6,12 +6,7 @@ const FILES = `cache${timestamp}`
 const staticAssets = new Set(build)
 
 self.addEventListener('install', function (event) {
-	event.waitUntil(
-		caches
-			.open(FILES)
-			.then(cache => cache.addAll(build))
-			.then(self.skipWaiting)
-	)
+	event.waitUntil(self.skipWaiting())
 })
 
 self.addEventListener('activate', function (event) {
@@ -33,15 +28,24 @@ self.addEventListener('fetch', function (event) {
 
 	event.respondWith(
 		(async function () {
-			//@ts-ignore
-			const preloadResponse = await event.preloadResponse
-			if (preloadResponse) return preloadResponse
+			try {
+				//@ts-ignore
+				const preloadResponse = await event.preloadResponse
+				if (preloadResponse) return preloadResponse
 
-			const { pathname } = new URL(event.request.url)
-			if (staticAssets.has(pathname)) {
-				const cachedResponse = await caches.match(event.request)
-				if (cachedResponse) return cachedResponse
-			} else {
+				const { pathname } = new URL(event.request.url)
+				if (staticAssets.has(pathname)) {
+					const cachedResponse = await caches.match(event.request)
+					if (cachedResponse) return cachedResponse
+
+					const response = await fetch(event.request)
+					const cache = await caches.open(FILES)
+					await cache.put(event.request, response.clone())
+					return response
+				} else {
+					return await fetch(event.request)
+				}
+			} catch {
 				return await fetch(event.request)
 			}
 		})()
