@@ -1,12 +1,15 @@
 <script lang="ts">
 	import Select from '$components/Elements/Select.svelte'
-	import { currentComment, removeEditHighlights } from '$lib/comment'
+
+	import { tick } from 'svelte'
 	import { slide } from 'svelte/transition'
 	import { quintOut } from 'svelte/easing'
-	import { addToast, removeToast } from '$lib/toast'
 	import { page } from '$app/stores'
-	import { anchor, highlightRange, commentStore } from '$lib/comment'
-	import { tick } from 'svelte'
+
+	import { addToast, removeToast } from '$lib/toast'
+	import { currentComment, commentStore, state } from '$lib/comment'
+	import { highlightComment, removeEditHighlights } from '$lib/highlight'
+	import { smoothScroll } from '$lib/utils'
 
 	let text,
 		selected,
@@ -17,12 +20,14 @@
 		if (!comment) return
 		text = ''
 		removeEditHighlights()
-		if (comment.text.length === 0)
-			highlightRange(anchor(comment) as Range, { animate: true, isEdit: true, postId: comment.postId })
+		if (comment.text.length === 0) highlightComment(comment, { animate: true, isEdit: true, postId: comment.postId })
 		else text = comment.text
+		state.set(3)
+
 		await tick()
-		document.getElementById('edit-form').scrollIntoView({ behavior: 'smooth' })
-		if (!window.matchMedia('(max-width: 680px)').matches) document.getElementById('edit-textarea').focus()
+
+		if (!window.matchMedia('(max-width: 680px)').matches) smoothScroll(0, 0, document.querySelector('.scroll'))
+		document.getElementById('edit-textarea').focus()
 		selected = comment.category === 'BEFORE' ? options[0] : options[1]
 	})
 
@@ -86,6 +91,7 @@
 		currentComment.set(null)
 		removeEditHighlights()
 		text = ''
+		state.set(0)
 	}
 </script>
 
@@ -105,31 +111,51 @@
 
 <style lang="scss">
 	form {
-		padding: var(--spacing-half) var(--spacing);
-		background-color: var(--color-secondary-bg);
+		padding: var(--spacing);
+		background-color: var(--color-bg);
+		border-bottom: 1px solid var(--color-coral);
 		@media screen and (max-width: 680px) {
-			padding: var(--spacing-half);
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: 110%;
+			width: 100%;
+			padding: var(--spacing) var(--spacing-half);
+			touch-action: none;
+			border: none;
+			display: flex;
+			flex-flow: column wrap;
 		}
 	}
 
 	textarea {
 		width: 100%;
-		height: 14em;
-		background-color: var(--color-bg);
+		height: 20em;
+		background-color: var(--color-secondary-bg);
 		font-size: 0.9em;
 		resize: none;
 		padding: 0.6em 0.8em;
-		border: 1px solid var(--color-coral);
+		border: none;
+		border-radius: 0.5em;
 		cursor: auto;
 		outline: none;
 		margin-top: var(--spacing-half);
 		line-height: 1.6;
+		@media screen and (max-width: 680px) {
+			height: 60vh;
+			padding: var(--spacing-half);
+		}
 	}
 
 	div {
 		display: flex;
 		flex-direction: row;
 		margin-top: 0.6em;
+		@media screen and (max-width: 680px) {
+			order: -1;
+			margin-top: 0;
+			margin-bottom: var(--spacing);
+		}
 	}
 
 	button {
@@ -142,6 +168,10 @@
 		position: relative;
 		margin: 0;
 		transform-style: preserve-3d;
+
+		@media screen and (max-width: 680px) {
+			font-size: 1em;
+		}
 
 		&::after {
 			content: '';

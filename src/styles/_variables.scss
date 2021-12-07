@@ -15,7 +15,7 @@ $breakpoint-m: 1024;
 	--spacing-4: calc(var(--line-height) * 4);
 
 	--color-bg: #fafafa;
-	--color-secondary-bg: #f6f6f6;
+	--color-secondary-bg: #f8f4e7;
 	--color-text: #1c1c1e;
 	--color-melon: #ffa69e;
 	--color-melon-dark: #ff796d;
@@ -34,7 +34,7 @@ $breakpoint-m: 1024;
 @mixin darkmode {
 	--color-text: #fafafa;
 	--color-bg: #212020;
-	--color-secondary-bg: #2c2d2d;
+	--color-secondary-bg: #393a3a;
 	--color-blue: #{color.scale(#aed9e0, $lightness: -10%, $saturation: -20%)};
 	--color-eggshell: #{color.scale(#faecbe, $lightness: -15%, $saturation: -50%)};
 	--color-melon: #{color.scale(#ffa69e, $lightness: -15%, $saturation: -20%)};

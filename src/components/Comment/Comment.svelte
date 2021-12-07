@@ -1,16 +1,19 @@
 <svelte:options immutable={true} />
 
 <script lang="ts">
-	export let comment, refresh
+	export let comment
 
 	import { onMount } from 'svelte'
 	import { userStore } from '$lib/auth'
 	import { addToast, removeToast } from '$lib/toast'
-	import { anchor, highlightRange, removeHighlightById, currentComment } from '$lib/comment'
+	import { highlightComment, removeHighlightById } from '$lib/highlight'
+	import { page } from '$app/stores'
+	import { commentStore, editComment, scrollToHighlight } from '$lib/comment'
+
+	$: ({ refresh } = commentStore($page.path.slice(1)))
 
 	onMount(() => {
-		const range = anchor(comment)
-		if (range) highlightRange(range, { animate: false, id: comment.id, postId: comment.postId })
+		highlightComment(comment, { animate: false, id: comment.id, postId: comment.postId })
 
 		return () => removeHighlightById(comment.id)
 	})
@@ -29,19 +32,6 @@
 				addToast('Fail to delete!', 'warn')
 			}
 		})
-	}
-
-	function editComment(comment) {
-		currentComment.set(comment)
-	}
-
-	function scrollToHighlight(id: number) {
-		const highlight = document.querySelector(`.highlight[data-for-comment="${id}"]`)
-		if (highlight)
-			highlight.scrollIntoView({
-				behavior: 'smooth',
-				block: 'center'
-			})
 	}
 </script>
 
@@ -91,13 +81,18 @@
 	}
 
 	.buttons {
-		opacity: 0;
-		visibility: hidden;
-		transition: opacity 0.5s ease-out;
+		@media screen and (min-width: 680px) {
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.5s ease-out;
+		}
 	}
 
 	blockquote {
 		cursor: pointer;
+		@media screen and (max-width: 680px) {
+			display: none;
+		}
 	}
 
 	.edit {
@@ -118,5 +113,15 @@
 	.comment-text {
 		white-space: pre-wrap;
 		font-size: 0.9em;
+		@media screen and (max-width: 680px) {
+			height: calc(40vh - var(--line-height) * 2.5);
+			padding-bottom: var(--spacing);
+			overflow: scroll;
+			overscroll-behavior: contain;
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
 	}
 </style>

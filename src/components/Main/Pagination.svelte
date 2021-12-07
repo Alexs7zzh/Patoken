@@ -33,9 +33,6 @@
 			display: inline-block;
 			margin-top: var(--spacing);
 			margin-right: var(--spacing-half);
-			// @media screen and (min-width: 680px) {
-			//   margin-right: var(--spacing-half);
-			// }
 		}
 
 		a {

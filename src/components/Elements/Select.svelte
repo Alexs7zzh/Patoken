@@ -40,5 +40,6 @@
 		position: absolute;
 		right: 0;
 		top: calc(50% - 0.5em);
+		opacity: 0.7;
 	}
 </style>

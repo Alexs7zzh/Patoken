@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"module": "es2020",
-		"lib": ["es2020", "DOM", "WebWorker"],
+		"lib": ["es2020", "DOM", "DOM.Iterable", "WebWorker"],
 		"target": "es2020",
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
