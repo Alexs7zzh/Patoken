@@ -118,7 +118,7 @@
 			position: fixed;
 			top: 0;
 			left: 0;
-			height: 110%;
+			height: 1000px;
 			width: 100%;
 			padding: var(--spacing) var(--spacing-half);
 			touch-action: none;
@@ -142,7 +142,7 @@
 		margin-top: var(--spacing-half);
 		line-height: 1.6;
 		@media screen and (max-width: 680px) {
-			height: 60vh;
+			height: 50vh;
 			padding: var(--spacing-half);
 		}
 	}
