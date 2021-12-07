@@ -59,7 +59,7 @@
 			}
 			.sun {
 				opacity: 1 !important;
-				transform: translateY(-0.1em) rotate(120deg) !important;
+				transform: translate(-0.1em, -0.4em) rotate(120deg) !important;
 			}
 		}
 	}
@@ -71,7 +71,7 @@
 		}
 		.sun {
 			opacity: 1 !important;
-			transform: translateY(-0.1em) rotate(120deg) !important;
+			transform: translate(-0.1em, -0.4em) rotate(120deg) !important;
 		}
 	}
 </style>
