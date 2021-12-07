@@ -142,7 +142,7 @@
 		margin-top: var(--spacing-half);
 		line-height: 1.6;
 		@media screen and (max-width: 680px) {
-			height: 50vh;
+			height: 40vh;
 			padding: var(--spacing-half);
 		}
 	}

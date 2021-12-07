@@ -100,8 +100,6 @@
 	}
 
 	form {
-		border-radius: 20px;
-		box-sizing: border-box;
 		padding: var(--spacing-half);
 		width: 320px;
 	}
