@@ -77,7 +77,7 @@ export function commentStore(path: string) {
 					const ida = ids.indexOf(a.postId),
 						idb = ids.indexOf(b.postId)
 					if (ida !== idb) return ida - idb
-					return a.selectors[1].start - b.selectors[1].start
+					return a.selectors[1].end - b.selectors[1].end
 				})
 				return comments
 			},
