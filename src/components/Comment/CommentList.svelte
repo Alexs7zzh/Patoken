@@ -22,7 +22,7 @@
 	state.subscribe(s => {
 		if (s === 1) height.set(0)
 		else height.set(0.5 * window.innerHeight)
-		if (s === 3) document.body.classList.add('noscroll')
+		if (s === 3 && mobile) document.body.classList.add('noscroll')
 		else document.body.classList.remove('noscroll')
 	})
 	index.subscribe(i => {
