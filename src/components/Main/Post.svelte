@@ -10,7 +10,7 @@
 
 <article id={post.slug} data-author={post.authorSlug}>
 	<div>
-		<p class="button">{getName(post.author)}{post.title !== '(Untitled)' && `・${post.title}`}</p>
+		<p class="button">{getName(post.author)}{post.title === '(Untitled)' ? '' : `・${post.title}`}</p>
 	</div>
 	{@html post.html}
 </article>
