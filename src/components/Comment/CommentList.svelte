@@ -20,9 +20,15 @@
 	let height = spring(0.5 * window.innerHeight)
 
 	state.subscribe(s => {
-		if (s === 1) height.set(0)
-		else height.set(0.5 * window.innerHeight)
-		if (s === 3 && mobile) document.body.classList.add('noscroll')
+		if (!mobile) return
+		if (s === 1) {
+			height.set(0)
+			document.getElementsByTagName('main')[0].style.paddingBottom = '50vh'
+		} else {
+			height.set(0.5 * window.innerHeight)
+			document.getElementsByTagName('main')[0].style.paddingBottom = null
+		}
+		if (s === 3) document.body.classList.add('noscroll')
 		else document.body.classList.remove('noscroll')
 	})
 	index.subscribe(i => {

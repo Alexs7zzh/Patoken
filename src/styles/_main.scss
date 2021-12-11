@@ -1,7 +1,7 @@
 @use 'variables';
 
 main {
-	padding: 0 var(--spacing-half);
+	padding: 0 var(--spacing-half) var(--spacing);
 	margin-top: var(--spacing);
 	@media screen and (min-width: #{variables.$breakpoint-m}px) {
 		margin-top: 0;
