@@ -5,6 +5,7 @@
 	import { slide } from 'svelte/transition'
 	import { quintOut } from 'svelte/easing'
 	import { page } from '$app/stores'
+	import { browser } from '$app/env'
 
 	import { addToast, removeToast } from '$lib/toast'
 	import { currentComment, commentStore, state } from '$lib/comment'
@@ -13,22 +14,29 @@
 
 	let text,
 		selected,
-		options = ['考察', 'パトアンサー']
+		options = ['考察', 'パトアンサー'],
+		annotationIds
 	$: ({ refresh } = commentStore($page.path.slice(1)))
 
 	currentComment.subscribe(async comment => {
-		if (!comment) return
-		text = ''
-		removeEditHighlights()
-		if (comment.text.length === 0) highlightComment(comment, { animate: true, isEdit: true, postId: comment.postId })
-		else text = comment.text
-		state.set(3)
+		if (!browser) return
+		const mobile = window.matchMedia('(max-width: 680px)').matches
+		if (!comment) {
+			if (annotationIds) removeEditHighlights(annotationIds)
+			text = ''
+			if (mobile) state.set(0)
+		} else {
+			if (comment.text.length === 0)
+				annotationIds = highlightComment(comment, { animate: true, isEdit: true, postId: comment.postId })
+			else text = comment.text
+			if (mobile) state.set(3)
 
-		await tick()
+			await tick()
 
-		if (!window.matchMedia('(max-width: 680px)').matches) smoothScroll(0, 0, document.querySelector('.scroll'))
-		document.getElementById('edit-textarea').focus()
-		selected = comment.category === 'BEFORE' ? options[0] : options[1]
+			if (!mobile) smoothScroll(0, 0, document.querySelector('.scroll'))
+			document.getElementById('edit-textarea').focus()
+			selected = comment.category === 'BEFORE' ? options[0] : options[1]
+		}
 	})
 
 	function createComment() {
@@ -50,7 +58,7 @@
 				addToast('Posted!')
 				refresh()
 				currentComment.set(null)
-				removeEditHighlights()
+				removeEditHighlights(annotationIds)
 			} else {
 				addToast('Fail to post!', 'warn')
 			}
@@ -73,7 +81,7 @@
 				addToast('Edited!')
 				refresh()
 				currentComment.set(null)
-				removeEditHighlights()
+				removeEditHighlights(annotationIds)
 			} else {
 				addToast('Fail to edit!', 'warn')
 			}
@@ -89,9 +97,6 @@
 
 	function resetComment() {
 		currentComment.set(null)
-		removeEditHighlights()
-		text = ''
-		state.set(0)
 	}
 </script>
 

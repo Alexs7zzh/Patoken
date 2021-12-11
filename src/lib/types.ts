@@ -51,3 +51,11 @@ export interface Comment {
 	updatedAt?: string
 	category?: 'BEFORE' | 'AFTER'
 }
+
+export interface Stuff {
+	id: number
+	name: string
+	text: string
+	category: string
+	author: string
+}
