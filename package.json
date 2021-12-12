@@ -28,7 +28,7 @@
 		"@alexs7/rough-notation": "^0.6.4",
 		"@floating-ui/dom": "^0.1.7",
 		"@svelte-drama/swr": "^0.1.6",
-		"@use-gesture/vanilla": "^10.2.2",
+		"@use-gesture/vanilla": "^10.2.4",
 		"approx-string-match": "^2.0.0",
 		"magic-sdk": "^6.2.1"
 	},
