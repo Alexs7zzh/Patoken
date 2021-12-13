@@ -133,7 +133,7 @@
 			width: 80vw;
 			height: 40vh;
 			overscroll-behavior: none;
-			background-color: var(--color-eggshell);
+			background-color: var(--color-secondary-bg);
 			border-radius: 0.6em;
 			user-select: none;
 			--shadow-color: 0deg 0% 66%;
