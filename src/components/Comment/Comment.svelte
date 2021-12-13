@@ -26,7 +26,7 @@
 			credentials: 'include'
 		}).then(res => {
 			removeToast(id)
-			if (res.status === 200) {
+			if (res.ok) {
 				addToast('Deleted')
 				refresh()
 			} else {

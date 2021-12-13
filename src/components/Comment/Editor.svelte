@@ -54,7 +54,7 @@
 			})
 		}).then(res => {
 			removeToast(id)
-			if (res.status === 200) {
+			if (res.ok) {
 				addToast('Posted!')
 				refresh()
 				currentComment.set(null)
@@ -77,7 +77,7 @@
 			body: JSON.stringify({ text, category: selected === options[0] ? 'BEFORE' : 'AFTER' })
 		}).then(res => {
 			removeToast(id)
-			if (res.status === 200) {
+			if (res.ok) {
 				addToast('Edited!')
 				refresh()
 				currentComment.set(null)

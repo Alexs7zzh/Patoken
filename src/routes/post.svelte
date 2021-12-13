@@ -30,7 +30,7 @@
 				body: JSON.stringify({ name, category, text })
 			})
 			removeToast(id)
-			if (res.status !== 200) throw new Error()
+			if (!res.ok) throw new Error()
 			else redirect()
 		} catch (err) {
 			removeToast(id)

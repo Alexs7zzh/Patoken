@@ -49,7 +49,7 @@
 				},
 				body: JSON.stringify({ name })
 			})
-			if (res.status !== 200) throw new Error('Failed to create account')
+			if (!res.ok) throw new Error('Failed to create account')
 			userStore.set(await res.json())
 			removeToast(id)
 			redirect()
