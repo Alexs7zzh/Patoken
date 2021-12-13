@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation'
 	import { addToast, removeToast } from '$lib/toast'
 	import { userStore } from '$lib/auth'
-	import Toggle from '../components/Header/Toggle.svelte'
+	import Toggle from '$components/Header/Toggle.svelte'
 	import { fade, fly } from 'svelte/transition'
 	import { quintOut } from 'svelte/easing'
 

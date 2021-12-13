@@ -85,7 +85,7 @@
 </script>
 
 <ul bind:this={ref} style={mobile ? `transform:translate3d(${$position}px,${$height}px,0)` : ''}>
-	{#each $comments as comment, i (comment.id)}
+	{#each $comments as comment (comment.id)}
 		<li
 			id={'comment-' + String(comment.id)}
 			animate:flip={{ easing: quintOut }}

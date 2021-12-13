@@ -1,5 +1,4 @@
 import GhostContentAPI from '@tryghost/content-api'
-import { parseHTML } from 'linkedom'
 import type { Post, Author, AsidePost } from '$lib/types'
 
 let posts, authors
@@ -28,16 +27,6 @@ function formatPosts(posts) {
 	for (let i of posts) {
 		let match = i.title.match(/\d{4}\/(\d{1,2}\/\d{1,2})/)
 		if (match) i.title = match[1]
-
-		let { document } = parseHTML(i.html)
-		//@ts-ignore
-		for (let node of document.querySelectorAll('h2')) {
-			const content = node.textContent
-			const h3 = document.createElement('h3')
-			h3.textContent = content
-			document.replaceChild(h3, node)
-		}
-		i.html = document.toString()
 	}
 	return posts
 }
@@ -71,13 +60,19 @@ export async function getPostsByPagination(page: number): Promise<Post[]> {
 	}))
 }
 
-export async function getPaginationUrls(): Promise<string[]> {
+export async function getPaginationUrls(): Promise<{ urls: string[]; postsOnPage: Record<string, string[]> }> {
 	posts = posts ? posts : await getPosts()
 	const totalPageNumber = Math.ceil(posts.length / 5)
-	return Array.from(Array(totalPageNumber).keys()).map(i => {
+	const urls = Array.from(Array(totalPageNumber).keys()).map(i => {
 		if (i === 0) return '/'
 		return `/page/${i + 1}`
 	})
+	const postsOnPage = {}
+	for (let i = 0; i < totalPageNumber; i++) {
+		postsOnPage[urls[i]] = posts.slice(i * 5, i * 5 + 5).map(i => i.slug)
+	}
+
+	return { urls, postsOnPage }
 }
 
 export async function getAsidePostsByAuthor(author: string): Promise<AsidePost[]> {

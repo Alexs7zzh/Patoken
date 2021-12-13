@@ -85,7 +85,8 @@ export function commentStore(path: string) {
 	let store, url
 	if (browser) {
 		if (path === '' || path.startsWith('page')) {
-			const posts = getContext('posts') as String[]
+			const postsOnPage = getContext('postsOnPage') as Record<string, string[]>
+			const posts = postsOnPage[`/${path}`]
 			url = `${import.meta.env.VITE_API_URL}/comment?${posts.map(i => `id=${i}`).join('&')}`
 		} else url = `${import.meta.env.VITE_API_URL}/comment?author=${path}`
 

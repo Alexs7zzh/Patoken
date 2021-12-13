@@ -1,21 +1,32 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit'
-
-	export const load: Load = async ({ fetch }) => {
+	export const load = async ({ fetch }) => {
 		const authors = await fetch('/ghost/authors.json')
+
+		const { urls, postsOnPage } = await (await fetch('/ghost/urls.json')).json()
 		return {
 			stuff: {
-				authors: await authors.json()
+				authors: await authors.json(),
+				pageUrls: urls
+			},
+			props: {
+				postsOnPage
 			}
 		}
 	}
 </script>
 
 <script lang="ts">
+	export let postsOnPage
+
+	import '../styles/shared.scss'
 	import '../styles/style.scss'
 	import Toasts from '$components/Toast/Toasts.svelte'
-	import { onMount } from 'svelte'
+	import Comment from '$components/Comment/index.svelte'
+	import { onMount, setContext } from 'svelte'
 	import { userStore } from '$lib/auth'
+
+	setContext('postsOnPage', postsOnPage)
+	let Tooltip
 
 	onMount(async () => {
 		try {
@@ -29,7 +40,16 @@
 			userStore.set(null)
 		}
 	})
+
+	userStore.subscribe(value => {
+		if (value)
+			import('$components/Elements/Tooltip.svelte').then(({ default: module }) => {
+				Tooltip = module
+			})
+	})
 </script>
 
 <slot />
+<Comment />
+<svelte:component this={Tooltip} />
 <Toasts />

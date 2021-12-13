@@ -1,36 +1,22 @@
 <script context="module" lang="ts">
-	import type { Load } from '@sveltejs/kit'
-	import type { Post as PostType } from '$lib/types'
-
-	export const load: Load = async ({ fetch, page: { params }, stuff }) => {
-		const res = await fetch(`/ghost/${params.author}.json`)
-		const data = await res.json()
+	export const load = async ({ fetch, page: { params }, stuff: { authors } }) => {
+		const { posts, toc } = await (await fetch(`/ghost/${params.author}.json`)).json()
 		return {
 			props: {
-				author: params.author,
-				posts: data.posts,
-				toc: data.toc,
-				authors: stuff.authors
+				authors,
+				posts,
+				toc,
+				author: params.author
 			}
 		}
 	}
 </script>
 
 <script lang="ts">
+	export let author, authors, posts, toc
+
 	import Post from '$components/Main/Post.svelte'
 	import Header from '$components/Header/index.svelte'
-	import Comment from '$components/Comment/index.svelte'
-	import { userStore } from '$lib/auth'
-	export let author, posts: PostType[], toc, authors
-
-	let Tooltip
-
-	userStore.subscribe(value => {
-		if (value)
-			import('$components/Elements/Tooltip.svelte').then(({ default: module }) => {
-				Tooltip = module
-			})
-	})
 
 	function capitalizeFirstLetter(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1)
@@ -47,5 +33,3 @@
 		<Post {post} />
 	{/each}
 </main>
-<Comment />
-<svelte:component this={Tooltip} />

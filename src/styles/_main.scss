@@ -45,3 +45,24 @@ article {
 		margin-top: var(--spacing-half);
 	}
 }
+
+svg.annotation,
+svg.edit-annotation {
+	color: var(--color-melon-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+	:root:not([data-user-color-scheme]) svg.annotation,
+	svg.edit-annotation {
+		color: var(--color-melon);
+	}
+}
+
+:root[data-user-color-scheme='dark'] svg.annotation,
+svg.edit-annotation {
+	color: var(--color-melon);
+}
+
+.highlight {
+	cursor: pointer;
+}
