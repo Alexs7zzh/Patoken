@@ -48,7 +48,6 @@ export interface Comment {
 	postAuthor?: string
 	selectors: [RangeSelector, TextPositionSelector, TextQuoteSelector]
 	author?: string
-	updatedAt?: string
 	category?: 'BEFORE' | 'AFTER'
 }
 
