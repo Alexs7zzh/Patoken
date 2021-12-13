@@ -6,7 +6,7 @@ import { getContext } from 'svelte'
 import { browser } from '$app/env'
 import { smoothScroll } from './utils'
 import { swr } from '@svelte-drama/swr'
-import { refreshInterval, refreshOnFocus, refreshOnReconnect } from '@svelte-drama/swr/plugin'
+import { refreshOnFocus, refreshOnReconnect } from '@svelte-drama/swr/plugin'
 
 import type { RangeSelector, TextPositionSelector, TextQuoteSelector } from './types'
 import type { Comment } from '$lib/types'
@@ -58,6 +58,20 @@ export function rangeToCurrentComment(range: Range): Comment | null {
 			: localStorage.getItem('selected') === '0'
 			? 'BEFORE'
 			: 'AFTER'
+	}
+}
+
+function refreshInterval({ interval }) {
+	return ({ refresh }) => {
+		let timer = setInterval(refresh, interval)
+		window.addEventListener('blur', () => {
+			clearInterval(timer)
+		})
+		window.addEventListener('focus', () => {
+			clearInterval(timer)
+			timer = setInterval(refresh, interval)
+		})
+		return () => clearInterval(timer)
 	}
 }
 
