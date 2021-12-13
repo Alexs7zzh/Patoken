@@ -64,14 +64,20 @@ export function rangeToCurrentComment(range: Range): Comment | null {
 function refreshInterval({ interval }) {
 	return ({ refresh }) => {
 		let timer = setInterval(refresh, interval)
-		window.addEventListener('blur', () => {
-			clearInterval(timer)
-		})
-		window.addEventListener('focus', () => {
+		const addTimer = () => {
 			clearInterval(timer)
 			timer = setInterval(refresh, interval)
-		})
-		return () => clearInterval(timer)
+		}
+		const removeTimer = () => {
+			clearInterval(timer)
+		}
+		window.addEventListener('focus', addTimer)
+		window.addEventListener('blur', removeTimer)
+		return () => {
+			removeTimer()
+			window.removeEventListener('focus', addTimer)
+			window.removeEventListener('blur', removeTimer)
+		}
 	}
 }
 
