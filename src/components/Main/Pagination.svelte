@@ -37,7 +37,6 @@
 
 		a {
 			line-height: 1;
-			font-variant-numeric: tabular-nums;
 			background-color: var(--color-eggshell);
 			text-decoration: none;
 			border-radius: 0.4em;
