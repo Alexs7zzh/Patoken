@@ -31,7 +31,7 @@
 		"magic-sdk": "^6.2.1"
 	},
 	"browserslist": [
-		"> 5% in JP",
+		"> 3% in JP",
 		"last 2 major versions",
 		"not ie <= 11"
 	],
