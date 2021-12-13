@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
 	import type { Load } from '@sveltejs/kit'
 	import type { Post as PostType } from '$lib/types'
-	export const prerender = true
 
 	export const load: Load = async ({ fetch, stuff }) => {
 		const res = await fetch('/ghost/page-1.json')

@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export const prerender = true
-</script>
-
 <script lang="ts">
 	import { login } from '$lib/auth'
 	import { goto } from '$app/navigation'

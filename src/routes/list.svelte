@@ -1,7 +1,3 @@
-<script context="module" lang="ts">
-	export const prerender = true
-</script>
-
 <script lang="ts">
 	import Toggle from '$components/Header/Toggle.svelte'
 	import { onMount } from 'svelte'

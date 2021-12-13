@@ -1,6 +1,6 @@
 import path from 'path'
 import preprocess from 'svelte-preprocess'
-import vercel from '@sveltejs/adapter-vercel'
+import adapter from '@sveltejs/adapter-static'
 import autoprefixer from 'autoprefixer'
 
 const config = {
@@ -11,7 +11,7 @@ const config = {
 	}),
 	kit: {
 		target: '#svelte',
-		adapter: vercel(),
+		adapter: adapter({ pages: 'public' }),
 		vite: {
 			resolve: {
 				alias: {
