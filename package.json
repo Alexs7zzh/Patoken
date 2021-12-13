@@ -1,5 +1,6 @@
 {
 	"name": "patoken",
+	"type": "module",
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -22,7 +23,6 @@
 		"svelte-preprocess": "^4.9.8",
 		"typescript": "^4.5.3"
 	},
-	"type": "module",
 	"dependencies": {
 		"@alexs7/rough-notation": "^0.6.4",
 		"@floating-ui/dom": "^0.1.7",
@@ -31,6 +31,11 @@
 		"approx-string-match": "^2.0.0",
 		"magic-sdk": "^6.2.1"
 	},
+	"browserslist": [
+		"> 5% in JP",
+		"last 2 major versions",
+		"not ie <= 11"
+	],
 	"simple-git-hooks": {
 		"pre-commit": "npx pretty-quick --staged"
 	}
