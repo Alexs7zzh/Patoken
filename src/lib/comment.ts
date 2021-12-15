@@ -55,7 +55,7 @@ export function rangeToCurrentComment(range: Range): Comment | null {
 		selectors: result as [RangeSelector, TextPositionSelector, TextQuoteSelector],
 		category: !localStorage.getItem('selected')
 			? 'BEFORE'
-			: localStorage.getItem('selected') === '0'
+			: localStorage.getItem('selected') === '考察'
 			? 'BEFORE'
 			: 'AFTER'
 	}
