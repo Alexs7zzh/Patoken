@@ -2,20 +2,25 @@
 	import Toggle from '$components/Header/Toggle.svelte'
 	import { onMount } from 'svelte'
 
-	let numRef, infoRef
+	let numRef,
+		infoRef,
+		isTouching = false
 
 	const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
 	const downHandler = () => {
+		if (isTouching) return
 		infoRef.style.display = 'none'
 		numRef.textContent = String(random(1, 100))
 		numRef.style.opacity = 1
+		isTouching = true
 	}
 
 	const upHandler = () => {
 		numRef.style.opacity = 0
 		setTimeout(() => {
 			infoRef.style.display = null
+			isTouching = false
 		}, 300)
 	}
 
