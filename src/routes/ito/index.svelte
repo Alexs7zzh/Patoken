@@ -67,6 +67,7 @@
 		margin-left: auto;
 		margin-right: auto;
 		padding: var(--spacing);
+		touch-action: none;
 	}
 
 	h1 {
