@@ -4,6 +4,7 @@
 
 	let numRef,
 		infoRef,
+		containerRef,
 		isTouching = false
 
 	const random = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
@@ -25,6 +26,7 @@
 	}
 
 	onMount(() => {
+		containerRef.style.height = `${window.innerHeight}px`
 		window.addEventListener('mousedown', downHandler, false)
 		window.addEventListener('touchstart', downHandler, false)
 		window.addEventListener('mouseup', upHandler, false)
@@ -42,7 +44,7 @@
 	<title>Ito</title>
 </svelte:head>
 
-<div class="container">
+<div class="container" bind:this={containerRef}>
 	<h1>Ito</h1>
 	<p id="info" bind:this={infoRef}>Touch me</p>
 	<p id="num" bind:this={numRef}>50</p>
