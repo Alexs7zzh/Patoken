@@ -24,11 +24,14 @@
 	import Comment from '$components/Comment/index.svelte'
 	import { onMount, setContext } from 'svelte'
 	import { userStore } from '$lib/auth'
+	import workletURL from 'rough-notation-houdini/dist/worklet.modern.js?url'
 
 	setContext('postsOnPage', postsOnPage)
 	let Tooltip
 
 	onMount(async () => {
+		//@ts-ignore
+		CSS.paintWorklet.addModule(workletURL)
 		try {
 			const data = await (
 				await fetch(`${import.meta.env.VITE_API_URL}/user`, {

@@ -14,20 +14,18 @@
 
 	let text,
 		selected,
-		options = ['考察', 'パトアンサー'],
-		annotationIds
+		options = ['考察', 'パトアンサー']
 	$: ({ refresh } = commentStore($page.path.slice(1)))
 
 	currentComment.subscribe(async comment => {
 		if (!browser) return
 		const mobile = window.matchMedia('(max-width: 680px)').matches
 		if (!comment) {
-			if (annotationIds) removeEditHighlights(annotationIds)
+			removeEditHighlights()
 			text = ''
 			if (mobile) state.set(0)
 		} else {
-			if (comment.text.length === 0)
-				annotationIds = highlightComment(comment, { animate: true, isEdit: true, postId: comment.postId })
+			if (comment.text.length === 0) highlightComment(comment, { animate: true, isEdit: true, postId: comment.postId })
 			else text = comment.text
 			if (mobile) state.set(3)
 
@@ -58,7 +56,7 @@
 				addToast('Posted!')
 				refresh()
 				currentComment.set(null)
-				removeEditHighlights(annotationIds)
+				removeEditHighlights()
 			} else {
 				addToast('Fail to post!', 'warn')
 			}
@@ -81,7 +79,7 @@
 				addToast('Edited!')
 				refresh()
 				currentComment.set(null)
-				removeEditHighlights(annotationIds)
+				removeEditHighlights()
 			} else {
 				addToast('Fail to edit!', 'warn')
 			}

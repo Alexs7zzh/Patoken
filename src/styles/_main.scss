@@ -46,23 +46,20 @@ article {
 	}
 }
 
-svg.annotation,
-svg.edit-annotation {
-	color: var(--color-melon-dark);
-}
-
-@media (prefers-color-scheme: dark) {
-	:root:not([data-user-color-scheme]) svg.annotation,
-	svg.edit-annotation {
-		color: var(--color-melon);
-	}
-}
-
-:root[data-user-color-scheme='dark'] svg.annotation,
-svg.edit-annotation {
-	color: var(--color-melon);
-}
-
 .highlight {
 	cursor: pointer;
+}
+
+.underline {
+	--roughness: 3;
+	--rough-color: var(--color-melon-dark);
+	--type: 'underline';
+	background: paint(rough-notation);
+}
+
+.box {
+	--roughness: 3;
+	--rough-color: var(--color-melon-dark);
+	--type: 'box';
+	background: paint(rough-notation);
 }

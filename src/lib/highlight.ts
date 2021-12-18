@@ -1,24 +1,15 @@
 import { state, index, scrollToHighlight } from './comment'
-import AnnotationGroup from '@alexs7/rough-notation'
 import { wholeTextNodesInRange, removeHighlights } from './anchor/highlighter'
 import { RangeAnchor, TextPositionAnchor, TextQuoteAnchor } from './anchor/types'
 import { smoothScroll } from './utils'
 
 import type { Comment } from '$lib/types'
-import type { RoughAnnotationGroup } from '@alexs7/rough-notation/lib/model'
-
-let Annotation
 
 interface HighlightRangeOptions {
 	animate?: boolean
 	id?: number | null
 	isEdit?: boolean
 	postId?: string
-}
-
-function createAnnotation(): RoughAnnotationGroup {
-	if (!Annotation) Annotation = AnnotationGroup()
-	return Annotation
 }
 
 function scrollToComment({ target }) {
@@ -80,7 +71,7 @@ function anchor(comment: Comment) {
 	}
 }
 
-export function highlightComment(comment: Comment, options: HighlightRangeOptions = {}): string[] {
+export function highlightComment(comment: Comment, options: HighlightRangeOptions = {}) {
 	const { animate = false, id = null, isEdit = false } = options
 
 	const range = anchor(comment)
@@ -127,46 +118,18 @@ export function highlightComment(comment: Comment, options: HighlightRangeOption
 
 	highlights.forEach(highlight => highlight.addEventListener('click', scrollToComment))
 
-	const annotationInstance = createAnnotation()
-
-	let annotation: string | string[]
-
-	if (highlights.length === 1 && highlights[0].textContent.length <= 8) {
-		const annotationId = annotationInstance.add(highlights[0], {
-			type: 'box',
-			animate,
-			className: isEdit ? 'edit-annotation' : 'annotation',
-			commentId: String(id),
-			rootId: options.postId
-		})
-		annotation = [annotationId]
-	} else {
-		annotation = highlights.map(h =>
-			annotationInstance.add(h, {
-				type: 'underline',
-				animate,
-				className: isEdit ? 'edit-annotation' : 'annotation',
-				commentId: String(id),
-				rootId: options.postId
-			})
-		)
-	}
-
-	return annotation
+	if (highlights.length === 1 && highlights[0].textContent.length <= 8) highlights[0].classList.add('box')
+	else highlights.forEach(highlight => highlight.classList.add('underline'))
 }
 
-export function removeEditHighlights(annotationIds: string[]) {
+export function removeEditHighlights() {
 	const highlights = Array.from(document.querySelectorAll('.edit-highlight'))
 	highlights.forEach(h => h.removeEventListener('click', scrollToComment))
 	removeHighlights(highlights)
-	const annotationInstance = createAnnotation()
-	annotationIds.forEach(id => annotationInstance.remove(id))
 }
 
-export function removeHighlightById(id: string, annotationIds: string[]) {
+export function removeHighlightById(id: string) {
 	const highlights = Array.from(document.querySelectorAll(`.highlight[data-for-comment="${id}"]`))
 	highlights.forEach(h => h.removeEventListener('click', scrollToComment))
 	removeHighlights(highlights)
-	const annotationInstance = createAnnotation()
-	annotationIds.forEach(id => annotationInstance.remove(id))
 }

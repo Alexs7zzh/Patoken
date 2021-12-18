@@ -10,13 +10,12 @@
 	import { page } from '$app/stores'
 	import { commentStore, editComment, scrollToHighlight } from '$lib/comment'
 
-	let annotationIds
 	$: ({ refresh } = commentStore($page.path.slice(1)))
 
 	onMount(() => {
-		annotationIds = highlightComment(comment, { animate: false, id: comment.id, postId: comment.postId })
+		highlightComment(comment, { animate: false, id: comment.id, postId: comment.postId })
 
-		return () => removeHighlightById(comment.id, annotationIds)
+		return () => removeHighlightById(comment.id)
 	})
 
 	function deleteComment(commentId: number) {
