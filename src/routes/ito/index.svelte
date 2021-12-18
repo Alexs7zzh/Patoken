@@ -41,14 +41,14 @@
 </script>
 
 <svelte:head>
-	<title>Ito</title>
+	<title>イト</title>
 </svelte:head>
 
 <div class="container" bind:this={containerRef}>
-	<h1>Ito</h1>
+	<h1>イト</h1>
 	<p id="info" bind:this={infoRef}>Touch me</p>
 	<p id="num" bind:this={numRef}>50</p>
-	<Toggle style="top: calc(var(--spacing) + 0.5em); right: var(--spacing)" />
+	<Toggle style="top: var(--spacing); right: var(--spacing)" />
 </div>
 
 <style lang="scss">
@@ -72,7 +72,7 @@
 
 	h1 {
 		margin-bottom: 0;
-		font-size: 2em;
+		font-size: 1.6em;
 		line-height: 1;
 		user-select: none;
 	}
