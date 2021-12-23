@@ -7,7 +7,7 @@
 	let data,
 		categories,
 		c = 'All'
-	let editing = true,
+	let editing = false,
 		name,
 		category,
 		text
