@@ -22,6 +22,7 @@ $breakpoint-m: 1024;
 	--color-eggshell: #faf3dd;
 	--color-blue: #aed9e0;
 	--color-coral: #5e6472;
+	--color-grey: rgb(239, 239, 239);
 
 	--color-black: var(--color-text);
 	--color-hr: var(--color-melon);
@@ -39,6 +40,7 @@ $breakpoint-m: 1024;
 	--color-eggshell: #{color.scale(#faecbe, $lightness: -15%, $saturation: -50%)};
 	--color-melon: #{color.scale(#ffa69e, $lightness: -15%, $saturation: -20%)};
 	--color-coral: #{color.scale(#5e6472, $lightness: 70%)};
+	--color-grey: rgb(59, 59, 59);
 
 	--color-hr: var(--color-coral);
 	--color-black: var(--color-bg);

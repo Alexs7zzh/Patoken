@@ -136,7 +136,7 @@
 	textarea {
 		width: 100%;
 		height: 20em;
-		background-color: var(--color-secondary-bg);
+		background-color: var(--color-grey);
 		font-size: 0.9em;
 		resize: none;
 		padding: 0.6em 0.8em;
