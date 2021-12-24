@@ -194,12 +194,16 @@
 
 	.container {
 		width: 100vw;
-		padding: var(--spacing);
+		padding: var(--spacing-half);
 		max-width: 680px;
 		min-height: calc(90vh - var(--spacing-3));
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
+
+		@media screen and (min-width: 680px) {
+			padding: var(--spacing);
+		}
 	}
 
 	h1 {
@@ -227,6 +231,8 @@
 		li {
 			cursor: pointer;
 			transition: color 0.6s ease-out;
+			overflow-wrap: break-word;
+
 			&.selected,
 			&:hover {
 				color: var(--color-melon);
