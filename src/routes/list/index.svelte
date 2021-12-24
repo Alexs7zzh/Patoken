@@ -227,11 +227,15 @@
 		li {
 			cursor: pointer;
 			transition: color 0.6s ease-out;
-			margin-right: var(--spacing);
+			margin-right: var(--spacing-half);
 
 			&.selected,
 			&:hover {
 				color: var(--color-melon);
+			}
+
+			@media screen and (min-width: 680px) {
+				margin-right: var(--spacing);
 			}
 		}
 	}
