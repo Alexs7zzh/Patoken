@@ -184,7 +184,7 @@
 			</div>
 		</form>
 	{/if}
-	<Toggle style="top: calc(var(--spacing) + 0.5em); right: var(--spacing)" />
+	<Toggle style="top: calc(var(--spacing) + 0.5em); right: var(--spacing-half)" />
 </div>
 
 <style lang="scss">
@@ -194,16 +194,12 @@
 
 	.container {
 		width: 100vw;
-		padding: var(--spacing-half);
+		padding: var(--spacing) var(--spacing-half);
 		max-width: 680px;
 		min-height: calc(90vh - var(--spacing-3));
 		position: relative;
 		margin-left: auto;
 		margin-right: auto;
-
-		@media screen and (min-width: 680px) {
-			padding: var(--spacing);
-		}
 	}
 
 	h1 {
@@ -312,7 +308,7 @@
 	.container > .edit {
 		position: absolute;
 		top: calc(var(--spacing) + 0.7em);
-		right: calc(var(--spacing-2) + 0.5em);
+		right: var(--spacing-2);
 		cursor: pointer;
 		appearance: none;
 		border: none;
