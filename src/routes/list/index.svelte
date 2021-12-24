@@ -231,7 +231,6 @@
 		li {
 			cursor: pointer;
 			transition: color 0.6s ease-out;
-			overflow-wrap: break-word;
 
 			&.selected,
 			&:hover {
@@ -263,7 +262,7 @@
 	h2 {
 		grid-area: title;
 		margin: 0;
-		line-height: 1;
+		line-height: 1.2;
 		font-size: 1.2em;
 	}
 
