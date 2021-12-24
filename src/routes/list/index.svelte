@@ -227,15 +227,12 @@
 		li {
 			cursor: pointer;
 			transition: color 0.6s ease-out;
+			margin-right: var(--spacing);
 
 			&.selected,
 			&:hover {
 				color: var(--color-melon);
 			}
-		}
-
-		li + li {
-			margin-left: var(--spacing);
 		}
 	}
 
