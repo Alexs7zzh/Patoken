@@ -195,7 +195,7 @@
 	.container {
 		width: 100vw;
 		padding: var(--spacing);
-		max-width: 600px;
+		max-width: 680px;
 		min-height: calc(90vh - var(--spacing-3));
 		position: relative;
 		margin-left: auto;
