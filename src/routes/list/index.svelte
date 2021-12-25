@@ -248,7 +248,7 @@
 			grid-template:
 				'title meta' 1fr
 				'text  text' auto
-				/ 1fr auto;
+				/ auto auto;
 		}
 		li + li {
 			margin-top: var(--spacing-2);
