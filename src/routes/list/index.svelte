@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Toggle from '$components/Header/Toggle.svelte'
 	import { onMount } from 'svelte'
+	import { goto } from '$app/navigation'
 	import { addToast, removeToast } from '$lib/toast'
 	import { userStore } from '$lib/auth'
 	import type { Stuff } from '$lib/types'
@@ -83,11 +84,13 @@
 	}
 
 	function startEdit() {
-		name = ''
-		category = ''
-		text = ''
-		idInEdit = null
-		editing = true
+		if ($userStore && $userStore.name) {
+			name = ''
+			category = ''
+			text = ''
+			idInEdit = null
+			editing = true
+		} else goto('/signin')
 	}
 </script>
 
@@ -227,15 +230,11 @@
 		li {
 			cursor: pointer;
 			transition: color 0.6s ease-out;
-			margin-right: var(--spacing-half);
+			margin-right: 1.4rem;
 
 			&.selected,
 			&:hover {
 				color: var(--color-melon);
-			}
-
-			@media screen and (min-width: 680px) {
-				margin-right: var(--spacing);
 			}
 		}
 	}
