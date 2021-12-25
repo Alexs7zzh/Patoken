@@ -34,11 +34,8 @@ html {
 	text-size-adjust: 100%;
 	font-size: 18px;
 	position: relative;
-}
-
-body {
-	color: var(--color-text);
 	background-color: var(--color-bg);
+	color: var(--color-text);
 	font-family: var(--font-sans);
 	transition: all 0.2s ease-out;
 	line-height: var(--line-height);
