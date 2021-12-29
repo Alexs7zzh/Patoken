@@ -24,7 +24,7 @@
 	},
 	"dependencies": {
 		"@alexs7/rough-notation": "^0.6.6",
-		"@floating-ui/dom": "^0.1.8",
+		"@floating-ui/dom": "^0.1.9",
 		"@use-gesture/vanilla": "^10.2.4",
 		"approx-string-match": "^2.0.0",
 		"magic-sdk": "^7.0.0"
