@@ -5,7 +5,10 @@ import autoprefixer from 'autoprefixer'
 
 const config = {
 	serviceWorker: {
-		inject: false
+		register: false
+	},
+	prerender: {
+		concurrency: 2
 	},
 	preprocess: preprocess({
 		scss: {
