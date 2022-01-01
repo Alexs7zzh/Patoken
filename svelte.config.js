@@ -4,6 +4,9 @@ import adapter from '@sveltejs/adapter-static'
 import autoprefixer from 'autoprefixer'
 
 const config = {
+	serviceWorker: {
+		inject: false
+	},
 	preprocess: preprocess({
 		scss: {
 			renderSync: true
