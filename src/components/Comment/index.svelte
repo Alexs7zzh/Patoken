@@ -8,7 +8,7 @@
 	let CommentList
 	let selected = 0
 
-	$: ({ before, after } = commentStore($page.path.slice(1)))
+	$: ({ before, after } = commentStore($page.url.pathname.slice(1)))
 
 	onMount(() => {
 		import('./CommentList.svelte').then(({ default: module }) => {

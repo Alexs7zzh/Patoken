@@ -11,7 +11,7 @@
 	import { commentStore, editComment, scrollToHighlight } from '$lib/comment'
 
 	let annotationIds
-	$: ({ refresh } = commentStore($page.path.slice(1)))
+	$: ({ refresh } = commentStore($page.url.pathname.slice(1)))
 
 	onMount(() => {
 		annotationIds = highlightComment(comment, { animate: false, id: comment.id, postId: comment.postId })

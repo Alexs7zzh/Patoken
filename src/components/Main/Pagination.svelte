@@ -7,7 +7,7 @@
 	<ol>
 		{#each pageUrls as pageUrl, index (index)}
 			<li>
-				<a href={pageUrl} class:current={$page.path === pageUrl}>{index + 1}</a>
+				<a href={pageUrl} class:current={$page.url.pathname === pageUrl}>{index + 1}</a>
 			</li>
 		{/each}
 	</ol>

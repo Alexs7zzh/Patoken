@@ -16,7 +16,7 @@
 		selected,
 		options = ['考察', 'パトアンサー'],
 		annotationIds
-	$: ({ refresh } = commentStore($page.path.slice(1)))
+	$: ({ refresh } = commentStore($page.url.pathname.slice(1)))
 
 	currentComment.subscribe(async comment => {
 		if (!browser) return

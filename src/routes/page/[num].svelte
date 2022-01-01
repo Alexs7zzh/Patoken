@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export const load = async ({ fetch, page: { params }, stuff: { authors, pageUrls } }) => {
+	export const load = async ({ fetch, params, stuff: { authors, pageUrls } }) => {
 		const { posts } = await (await fetch(`/ghost/page-${params.num}.json`)).json()
 		return {
 			props: {

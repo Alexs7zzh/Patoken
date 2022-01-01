@@ -6,7 +6,7 @@
 	import { commentStore, state } from '$lib/comment'
 	import { fade } from 'svelte/transition'
 
-	$: ({ before, after } = commentStore($page.path.slice(1)))
+	$: ({ before, after } = commentStore($page.url.pathname.slice(1)))
 </script>
 
 <header class="handle" transition:fade style={$state !== 0 && window.innerWidth <= 680 ? 'display:none;' : ''}>

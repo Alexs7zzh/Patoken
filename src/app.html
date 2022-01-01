@@ -28,11 +28,6 @@
 				document.getElementById('theme-color').setAttribute('content', n === 'dark' ? '#212020' : '#fafafa')
 			}
 			o()
-			navigator.serviceWorker.getRegistrations().then(function (registrations) {
-				for (let registration of registrations) {
-					registration.unregister()
-				}
-			})
 		</script>
 		%svelte.head%
 	</head>

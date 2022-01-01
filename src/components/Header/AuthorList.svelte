@@ -7,7 +7,7 @@
 <ul>
 	{#each authors as item}
 		<li>
-			<a class="button" href={`/${item.slug}`} sveltekit:prefetch class:active={$page.path === `/${item.slug}`}
+			<a class="button" href={`/${item.slug}`} sveltekit:prefetch class:active={$page.url.pathname === `/${item.slug}`}
 				>{item.name}</a>
 		</li>
 	{/each}
