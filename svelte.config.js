@@ -4,9 +4,6 @@ import adapter from '@sveltejs/adapter-static'
 import autoprefixer from 'autoprefixer'
 
 const config = {
-	serviceWorker: {
-		register: false
-	},
 	prerender: {
 		concurrency: 2
 	},
