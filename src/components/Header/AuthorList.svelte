@@ -32,7 +32,7 @@
 			margin-right: var(--spacing-half);
 			position: relative;
 			display: inline-block;
-			opacity: 0.8;
+			opacity: 0.9;
 
 			@media screen and (max-width: 1024px) {
 				margin-bottom: 0.4em;
