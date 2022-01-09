@@ -43,25 +43,22 @@
 <style lang="scss">
 	h2 {
 		font-size: var(--font);
+		margin-top: 0.4em;
 		margin-bottom: 0;
-		@media screen and (min-width: 1024px) {
-			margin-bottom: 0.2em;
-		}
+		opacity: 0.9;
 	}
 
 	ul {
 		padding: 0;
 		list-style: none;
-
-		padding-bottom: var(--spacing-half);
 	}
 
 	li {
 		line-height: 1;
 		user-select: none;
 		display: inline-block;
-		margin-bottom: calc(var(--spacing-half) / 2);
 		margin-right: var(--spacing-half);
+		font-size: 0.9em;
 	}
 
 	a {
@@ -69,12 +66,9 @@
 		color: var(--color-coral);
 		transition: all 0.4s ease-out;
 
-		&:hover {
-			color: var(--color-melon);
-		}
-
+		&:hover,
 		&.active {
-			color: var(--color-melon);
+			color: var(--color-melon-dark);
 		}
 	}
 </style>

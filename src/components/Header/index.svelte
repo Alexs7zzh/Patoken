@@ -39,5 +39,6 @@
 
 	nav {
 		contain: content;
+		padding-bottom: var(--spacing-half);
 	}
 </style>
