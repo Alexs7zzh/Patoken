@@ -27,7 +27,7 @@
 	{#if $userStore && $userStore.name}
 		<p>{$userStore.name}</p>
 	{:else}
-		<a href="/signin">登録</a>
+		<a rel="external" href="/signin">登録</a>
 	{/if}
 </header>
 
