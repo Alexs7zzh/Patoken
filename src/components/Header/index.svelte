@@ -46,7 +46,7 @@
 		padding-bottom: var(--spacing-half);
 	}
 
-	:global(ul) {
+	nav :global(ul) {
 		display: flex;
 		flex-wrap: wrap;
 	}
