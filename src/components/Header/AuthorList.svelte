@@ -21,13 +21,8 @@
 	ul {
 		margin-top: var(--spacing);
 		margin-bottom: 0.4em;
-		list-style: none;
-		padding: 0;
-		display: flex;
-		flex-wrap: wrap;
 
 		@media screen and (min-width: 1024px) {
-			margin-top: var(--spacing-2);
 			margin-bottom: var(--spacing-2);
 		}
 
@@ -53,7 +48,6 @@
 				height: var(--size);
 				border-radius: 50%;
 				background: var(--color-blue);
-				// opacity: .8;
 				display: inline-block;
 			}
 
@@ -63,7 +57,6 @@
 		}
 
 		a {
-			text-decoration: none;
 			color: var(--color-text);
 			font-weight: bold;
 			transition: color 0.4s ease-out;

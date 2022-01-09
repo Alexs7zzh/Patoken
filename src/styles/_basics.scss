@@ -84,4 +84,11 @@ p + p {
 
 a {
 	color: var(--color-text);
+	text-decoration: none;
+}
+
+ul,
+ol {
+	padding: 0;
+	list-style: none;
 }

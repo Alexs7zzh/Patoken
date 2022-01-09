@@ -44,13 +44,8 @@
 	h2 {
 		font-size: var(--font);
 		margin-top: 0.4em;
-		margin-bottom: 0;
+		margin-bottom: 0.2em;
 		opacity: 0.9;
-	}
-
-	ul {
-		padding: 0;
-		list-style: none;
 	}
 
 	li {
@@ -58,11 +53,11 @@
 		user-select: none;
 		display: inline-block;
 		margin-right: var(--spacing-half);
+		margin-bottom: 0.6em;
 		font-size: 0.9em;
 	}
 
 	a {
-		text-decoration: none;
 		color: var(--color-coral);
 		transition: all 0.4s ease-out;
 

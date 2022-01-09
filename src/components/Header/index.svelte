@@ -1,9 +1,11 @@
 <script lang="ts">
 	export let authors,
 		toc = undefined
+
 	import SiteTitle from './SiteTitle.svelte'
 	import AuthorList from './AuthorList.svelte'
 	import PostList from './PostList.svelte'
+	import LinkList from './LinkList.svelte'
 </script>
 
 <header id="header">
@@ -11,6 +13,8 @@
 		<SiteTitle />
 
 		<nav>
+			<LinkList />
+
 			<AuthorList {authors} />
 
 			{#if toc !== undefined}
@@ -40,5 +44,10 @@
 	nav {
 		contain: content;
 		padding-bottom: var(--spacing-half);
+	}
+
+	:global(ul) {
+		display: flex;
+		flex-wrap: wrap;
 	}
 </style>

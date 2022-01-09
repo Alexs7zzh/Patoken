@@ -20,9 +20,6 @@
 		margin-top: var(--spacing-half);
 
 		ol {
-			list-style: none;
-			padding: 0;
-			margin: 0;
 			width: 100%;
 			display: grid;
 			grid-template-columns: repeat(auto-fit, minmax(1.8em, 1fr));
@@ -38,7 +35,6 @@
 		a {
 			line-height: 1;
 			background-color: var(--color-eggshell);
-			text-decoration: none;
 			border-radius: 0.4em;
 			user-select: none;
 			color: #1c1c1e;

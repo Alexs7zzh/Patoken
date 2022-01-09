@@ -108,7 +108,6 @@
 	}
 
 	a {
-		text-decoration: none;
 		font-weight: bold;
 		position: relative;
 		margin-left: auto;

@@ -18,13 +18,10 @@
 
 <style lang="scss">
 	ul {
-		list-style: none;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		position: fixed;
-		margin: 0;
-		padding: 0;
 		z-index: 9999;
 
 		top: var(--spacing);

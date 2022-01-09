@@ -104,9 +104,6 @@
 	}
 
 	ul {
-		list-style: none;
-		padding: 0;
-		margin: 0;
 		@media screen and (max-width: 680px) {
 			position: fixed;
 			left: 10vw;
