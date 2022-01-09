@@ -129,28 +129,14 @@ export function highlightComment(comment: Comment, options: HighlightRangeOption
 
 	const annotationInstance = createAnnotation()
 
-	let annotation: string | string[]
-
-	if (highlights.length === 1 && highlights[0].textContent.length <= 8) {
-		const annotationId = annotationInstance.add(highlights[0], {
-			type: 'box',
+	const annotation = highlights.map(h =>
+		annotationInstance.add(h, {
 			animate,
 			className: isEdit ? 'edit-annotation' : 'annotation',
 			commentId: String(id),
 			rootId: options.postId
 		})
-		annotation = [annotationId]
-	} else {
-		annotation = highlights.map(h =>
-			annotationInstance.add(h, {
-				type: 'underline',
-				animate,
-				className: isEdit ? 'edit-annotation' : 'annotation',
-				commentId: String(id),
-				rootId: options.postId
-			})
-		)
-	}
+	)
 
 	return annotation
 }
