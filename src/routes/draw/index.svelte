@@ -167,7 +167,7 @@
 
 	.join {
 		position: absolute;
-		bottom: var(--spacing-2);
+		bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
 		left: var(--spacing);
 
 		width: calc(100% - var(--spacing-2));
@@ -178,6 +178,9 @@
 		padding-top: var(--spacing);
 		border-top: 3px solid var(--color-secondary-bg);
 
+		@media screen and (max-width: 680px) {
+			bottom: calc(var(--spacing) + env(safe-area-inset-bottom));
+		}
 		&.center {
 			justify-content: center;
 		}
