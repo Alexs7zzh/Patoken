@@ -166,11 +166,13 @@
 	}
 
 	.join {
-		position: absolute;
-		bottom: calc(var(--spacing-2) + env(safe-area-inset-bottom));
-		left: var(--spacing);
+		position: fixed;
+		bottom: var(--spacing-2);
+		left: 50%;
+		transform: translateX(-50%);
 
 		width: calc(100% - var(--spacing-2));
+		max-width: 600px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
