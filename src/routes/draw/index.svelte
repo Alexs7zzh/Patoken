@@ -178,9 +178,6 @@
 		padding-top: var(--spacing);
 		border-top: 3px solid var(--color-secondary-bg);
 
-		@media screen and (max-width: 680px) {
-			bottom: calc(var(--spacing) + env(safe-area-inset-bottom));
-		}
 		&.center {
 			justify-content: center;
 		}
