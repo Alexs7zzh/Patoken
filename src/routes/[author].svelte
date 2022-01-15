@@ -17,14 +17,10 @@
 
 	import Post from '$components/Main/Post.svelte'
 	import Header from '$components/Header/index.svelte'
-
-	function capitalizeFirstLetter(string) {
-		return string.charAt(0).toUpperCase() + string.slice(1)
-	}
 </script>
 
 <svelte:head>
-	<title>{capitalizeFirstLetter(author)}｜パト研</title>
+	<title>{author.charAt(0).toUpperCase() + author.slice(1)}｜パト研</title>
 </svelte:head>
 
 <Header {authors} {toc} />
