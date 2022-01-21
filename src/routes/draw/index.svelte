@@ -12,11 +12,15 @@
 		const url = import.meta.env.VITE_API_URL as string
 		socket = new WebSocket(`${url.replace('https', 'wss')}/draw`)
 		socket.addEventListener('message', event => {
-			console.log(JSON.parse(event.data))
 			const message = JSON.parse(event.data)
 			if (message.type === 'member') member = message.data
 			if (message.type === 'draw') card = message.data[0]
 		})
+		if (sessionStorage.getItem('name')) join()
+		return () => {
+			socket.close()
+			sessionStorage.clear()
+		}
 	})
 
 	function join() {
@@ -26,6 +30,7 @@
 				name
 			})
 		)
+		sessionStorage.setItem('name', name)
 		joined = true
 	}
 
