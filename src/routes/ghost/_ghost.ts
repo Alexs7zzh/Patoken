@@ -1,43 +1,40 @@
-import GhostContentAPI from '@tryghost/content-api'
+import Cache from '@11ty/eleventy-cache-assets'
 import type { Post, Author, AsidePost } from '$lib/types'
 
-let posts, authors
-
-const api = new GhostContentAPI({
-	url: import.meta.env.VITE_GHOST_URL as string,
-	key: import.meta.env.VITE_GHOST_API as string,
-	version: 'v3'
-})
+const apiUrl = data =>
+	`${import.meta.env.VITE_GHOST_URL}/ghost/api/v4/content/${data}/?key=${import.meta.env.VITE_GHOST_API}&limit=all`
 
 export async function getAuthors(): Promise<Author[]> {
-	if (!authors) {
-		const tmp = await api.authors.browse({ limit: 'all' })
-		authors = tmp
-			.slice(0, tmp.length)
-			.filter(i => i.name !== 'Ghost')
-			.map(i => ({
-				name: i.name,
-				slug: i.slug
-			}))
+	const { authors: data } = (await Cache(apiUrl('authors'), { duration: '1m', type: 'json' })) as {
+		authors: Array<any>
 	}
+
+	const authors = data
+		.slice(0, data.length)
+		.filter(i => i.name !== 'Ghost')
+		.map(i => ({
+			name: i.name,
+			slug: i.slug
+		}))
+
 	return authors
 }
 
-function formatPosts(posts) {
+async function getPosts(): Promise<Array<any>> {
+	let { posts } = (await Cache(apiUrl('posts') + '&include=authors', { duration: '1m', type: 'json' })) as {
+		posts: Array<any>
+	}
+
 	for (let i of posts) {
 		let match = i.title.match(/\d{4}\/(\d{1,2}\/\d{1,2})/)
 		if (match) i.title = match[1]
 	}
+
 	return posts
 }
 
-async function getPosts(): Promise<Post[]> {
-	const posts = await api.posts.browse({ limit: 'all', include: 'authors' })
-	return formatPosts(posts)
-}
-
 export async function getPostsByAuthor(author: string): Promise<Post[]> {
-	posts = posts ? posts : await getPosts()
+	const posts = await getPosts()
 	return posts
 		.filter(i => i.primary_author.slug === author)
 		.map(i => ({
@@ -50,7 +47,7 @@ export async function getPostsByAuthor(author: string): Promise<Post[]> {
 }
 
 export async function getPostsByPagination(page: number): Promise<Post[]> {
-	posts = posts ? posts : await getPosts()
+	const posts = await getPosts()
 	return posts.slice(page * 5 - 5, page * 5).map(i => ({
 		title: i.title,
 		slug: i.slug,
@@ -61,7 +58,7 @@ export async function getPostsByPagination(page: number): Promise<Post[]> {
 }
 
 export async function getPaginationUrls(): Promise<{ urls: string[]; postsOnPage: Record<string, string[]> }> {
-	posts = posts ? posts : await getPosts()
+	const posts = await getPosts()
 	const totalPageNumber = Math.ceil(posts.length / 5)
 	const urls = Array.from(Array(totalPageNumber).keys()).map(i => {
 		if (i === 0) return '/'
@@ -76,7 +73,7 @@ export async function getPaginationUrls(): Promise<{ urls: string[]; postsOnPage
 }
 
 export async function getAsidePostsByAuthor(author: string): Promise<AsidePost[]> {
-	posts = posts ? posts : await getPosts()
+	const posts = await getPosts()
 
 	const tmp = posts
 		.filter(i => i.primary_author.slug === author)

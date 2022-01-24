@@ -15,11 +15,10 @@
 		"baseUrl": ".",
 		"allowJs": true,
 		"checkJs": true,
-		"strict": true,
 		"paths": {
 			"$lib/*": ["src/lib/*"],
 			"$components/*": ["src/components/*"]
 		}
 	},
-	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte"]
+	"include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte", "hooks.ts"]
 }
