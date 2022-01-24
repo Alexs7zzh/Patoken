@@ -4,6 +4,9 @@ import adapter from '@sveltejs/adapter-static'
 import autoprefixer from 'autoprefixer'
 
 const config = {
+	compilerOptions: {
+		cssHash: ({ hash, css }) => `s-${hash(css)}`
+	},
 	prerender: {
 		concurrency: 2
 	},

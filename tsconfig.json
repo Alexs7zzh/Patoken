@@ -4,6 +4,7 @@
 		"module": "es2020",
 		"lib": ["es2020", "DOM", "DOM.Iterable"],
 		"target": "es2020",
+		"importHelpers": true,
 		"importsNotUsedAsValues": "error",
 		"isolatedModules": true,
 		"resolveJsonModule": true,
@@ -14,6 +15,7 @@
 		"baseUrl": ".",
 		"allowJs": true,
 		"checkJs": true,
+		"strict": true,
 		"paths": {
 			"$lib/*": ["src/lib/*"],
 			"$components/*": ["src/components/*"]
