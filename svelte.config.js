@@ -16,7 +16,6 @@ const config = {
 		}
 	}),
 	kit: {
-		target: '#svelte',
 		adapter: adapter({ pages: 'public' }),
 		vite: {
 			resolve: {
