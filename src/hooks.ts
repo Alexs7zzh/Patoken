@@ -1,5 +1,4 @@
 import { minify } from 'html-minifier'
-import { prerendering } from '$app/env'
 
 const options = {
 	removeAttributeQuotes: true,
@@ -14,13 +13,9 @@ const options = {
 }
 
 export const handle = async ({ event, resolve }) => {
-	const response = await resolve(event)
-
-	if (prerendering && response.headers.get('content-type') === 'text/html')
-		return new Response(minify(await response.text(), options), {
-			status: response.status,
-			headers: response.headers
-		})
+	const response = await resolve(event, {
+		transformPage: ({ html }) => minify(html, options)
+	})
 
 	return response
 }
