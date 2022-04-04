@@ -17,6 +17,7 @@ const config = {
 	}),
 	kit: {
 		adapter: adapter({ pages: 'public' }),
+		trailingSlash: 'never',
 		vite: {
 			resolve: {
 				alias: {

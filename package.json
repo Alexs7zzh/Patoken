@@ -8,8 +8,8 @@
 	},
 	"devDependencies": {
 		"@11ty/eleventy-cache-assets": "^2.3.0",
-		"@sveltejs/adapter-static": "^1.0.0-next.28",
-		"@sveltejs/kit": "^1.0.0-next.287",
+		"@sveltejs/adapter-static": "^1.0.0-next.29",
+		"@sveltejs/kit": "^1.0.0-next.304",
 		"autoprefixer": "^10.4.4",
 		"html-minifier": "^4.0.0",
 		"postcss": "^8.4.12",
