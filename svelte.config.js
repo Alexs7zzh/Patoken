@@ -3,12 +3,10 @@ import preprocess from 'svelte-preprocess'
 import adapter from '@sveltejs/adapter-static'
 import autoprefixer from 'autoprefixer'
 
+/** @type {import('@sveltejs/kit').Config} */
 const config = {
 	compilerOptions: {
 		cssHash: ({ hash, css }) => `s-${hash(css)}`
-	},
-	prerender: {
-		concurrency: 2
 	},
 	preprocess: preprocess({
 		scss: {
@@ -16,6 +14,9 @@ const config = {
 		}
 	}),
 	kit: {
+		prerender: {
+			default: true
+		},
 		adapter: adapter({ pages: 'public' }),
 		trailingSlash: 'never',
 		vite: {
