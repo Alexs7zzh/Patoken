@@ -8,7 +8,6 @@ RUN unzip /tmp/pb.zip -d /pb/
 RUN rm /tmp/pb.zip
 
 VOLUME /pb_data
-USER pocketbase
 EXPOSE 8090
 
 ENTRYPOINT ["/pb/pocketbase", "serve", "--http=0.0.0.0:8090", "--dir=/pb_data"]
