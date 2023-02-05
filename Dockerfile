@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-ARG POCKETBASE_VERSION=0.12.2
+ARG PB_VERSION=0.12.2
 
 RUN apk update && apk add --no-cache unzip
 ADD https://github.com/pocketbase/pocketbase/releases/download/v${PB_VERSION}/pocketbase_${PB_VERSION}_linux_amd64.zip /tmp/pb.zip
